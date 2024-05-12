@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="login-box">
+                <h2>Login</h2>
+                <form @submit.prevent="login">
+                    <div class="input-group">
+                        <input type="email" id="email" v-model="email" placeholder="Email" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="password" v-model="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+                <div class="links">
+                    <a href="#">Forgot password?</a>
+                    <a href="#">Create Account</a>
+                </div>
+            </div>
+            <div class="image-box">
+                <img src="https://image.prntscr.com/image/OjQhAB6sCJo0DKnqNou56w.png" alt="Sample Image">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

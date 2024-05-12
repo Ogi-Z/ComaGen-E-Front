@@ -1,0 +1,118 @@
+/* Temel ayarlar: sayfanın genel fontu, arka plan rengi, metin rengi vb. */
+/* src/styles/global.css */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100vw; /* Viewport genişliği */
+    height: 100vh; /* Viewport yüksekliği */
+    background-color: white; /* Arka plan beyaz */
+    font-family: 'Times New Roman', serif;
+    color: #333;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+    background-color: white; /* Başlık arka planını beyaz yap */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .logo {
+    font-weight: bold;
+    color: #4CAF50; /* Logo rengi */
+    font-family: 'Times New Roman', serif; /* Logo fontu */
+  }
+  
+  .nav-links a {
+    color: black; /* Bağlantı rengi */
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 16px; /* Bağlantı font boyutu */
+  }
+  
+  .nav-links a:hover {
+    text-decoration: underline; /* Hover durumunda altı çizili */
+  }
+  
+  
+  /* Uygulama konteyneri: sayfanın içeriğini sınırlar ve merkezler */
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  /* Butonlar: genel buton stilleri */
+  .button {
+    background-color: #4CAF50; /* Buton rengi */
+    color: white; /* Buton metin rengi */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  /* Input alanları: form elemanlarının stil tanımlamaları */
+  .input-field {
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Linkler için genel stil ayarları */
+  a {
+    color: #0645AD; /* Link rengi */
+    text-decoration: none; /* Altı çizili olmaması */
+  }
+  
+  a:hover {
+    text-decoration: underline; /* Üzerine gelindiğinde altı çizili */
+  }
+  
+  /* Header bileşeni için spesifik stil tanımlamaları */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+    background-color: #006400; /* Koyu yeşil zemin rengi */
+    color: white;
+  }
+  
+  .logo {
+    font-weight: bold;
+  }
+  
+  .nav-links a {
+    color: white;
+    margin-right: 20px;
+    text-decoration: none;
+  }
+  
+  .login-button {
+    background-color: green; /* Daha açık yeşil buton rengi */
+    padding: 5px 15px;
+    border-radius: 5px;
+  }
+  .home-container {
+    width: 100%; /* Konteynır genişliği tam sayfa */
+    height: 100%; /* Konteynır yüksekliği tam sayfa */
+    padding: 20px 50px; /* İç boşluk */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* İçerikleri dikey olarak ortala */
+    align-items: center; /* İçerikleri yatay olarak ortala */
+    background-color: white;
+  }
+  h1, p {
+    color: #333;
+    font-family: 'Times New Roman', serif;
+  }
