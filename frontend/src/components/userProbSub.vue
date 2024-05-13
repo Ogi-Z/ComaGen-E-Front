@@ -87,12 +87,6 @@ export default {
   margin-bottom: 20px;
 }
 
-form,
-select,
-label {
-  color: #000000;
-}
-
 .input-field {
   width: 100%;
   padding: 8px;
