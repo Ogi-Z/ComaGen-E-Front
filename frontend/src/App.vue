@@ -8,12 +8,26 @@
 </template>
 
 <script>
-import HeaderComponent from './components/HeaderComponent.vue';
+import HeaderComponent from "./components/HeaderComponent.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HeaderComponent
-  }
-}
+    HeaderComponent,
+  },
+};
 </script>
+
+<style>
+input,
+select,
+textarea {
+  color: #000000;
+}
+
+form,
+select,
+label {
+  color: #000000;
+}
+</style>
