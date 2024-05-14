@@ -1,88 +1,90 @@
 <template>
-    <div class="registration-container">
-      <h2>User Registration</h2>
-      <form @submit.prevent="registerUser">
-        <div class="form-group">
-          <input type="text" v-model="user.name" placeholder="Name Surname" class="input-field" required>
-        </div>
-        <div class="form-group">
-          <input type="email" v-model="user.email" placeholder="Email" class="input-field" required>
-        </div>
-        <div class="form-group">
-          <input type="password" v-model="user.password" placeholder="Password" class="input-field" required>
-        </div>
-        <div class="form-group">
-          <input type="password" v-model="user.confirmPassword" placeholder="Confirm Password" class="input-field" required>
-        </div>
-        <div class="form-group">
-          <input type="text" v-model="user.city" placeholder="City" class="input-field">
-        </div>
-        <div class="form-group">
-          <select v-model="user.gender" class="input-field">
-            <option value="">Select Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
-        </div>
-        <button type="submit" class="button">Register</button>
-      </form>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'UserRegistrationPage',
-    data() {
-      return {
-        user: {
-          name: '',
-          email: '',
-          password: '',
-          confirmPassword: '',
-          city: '',
-          gender: ''
-        }
-      }
-    },
-    methods: {
-      registerUser() {
-        console.log('Registering user:', this.user);
-        // In a real application, here you would typically make an API call to register the user
-        // After successful registration, you might redirect them to a login page or their profile
+  <div class="registration-container">
+    <h2>User Registration</h2>
+    <form @submit.prevent="registerUser">
+      <div class="form-group">
+        <input type="text" v-model="user.name" placeholder="Name Surname" class="input-field" required>
+      </div>
+      <div class="form-group">
+        <input type="email" v-model="user.email" placeholder="Email" class="input-field" required>
+      </div>
+      <div class="form-group">
+        <input type="password" v-model="user.password" placeholder="Password" class="input-field" required>
+      </div>
+      <div class="form-group">
+        <input type="password" v-model="user.confirmPassword" placeholder="Confirm Password" class="input-field" required>
+      </div>
+      <div class="form-group">
+        <input type="text" v-model="user.city" placeholder="City" class="input-field">
+      </div>
+      <div class="form-group">
+        <select v-model="user.gender" class="input-field">
+          <option value="">Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+      <button type="submit" class="button">Register</button>
+    </form>
+  </div>
+</template>
+
+<script>
+import router from '../router';
+
+export default {
+  name: 'UserRegistrationPage',
+  data() {
+    return {
+      user: {
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        city: '',
+        gender: ''
       }
     }
+  },
+  methods: {
+    registerUser() {
+      console.log('Registering user:', this.user);
+      // In a real application, here you would typically make an API call to register the user
+      // Simulate registration by redirecting to authentication confirmation page
+      router.push('/authConfirm'); // Redirect to authConfirm after successful registration
+    }
   }
-  </script>
-  
-  <style scoped>
-  .registration-container {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    background-color: #f4f4f4;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .input-field {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .button {
-    width: 100%;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #4CAF50;
-    color: white;
-  }
-  </style>
-  
+}
+</script>
+
+<style scoped>
+.registration-container {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.button {
+  width: 100%;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
