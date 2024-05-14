@@ -25,10 +25,10 @@ export default {
     // Make an HTTP GET request to fetch data from the backend
     this.getUserData();
   },
-  name: "SoftwareListingPage",
+
   methods: {
     async getUserData() {
-      return axios.get("api/users").then((response) => {
+      return axios.get("http://127.0.0.1:5000/users").then((response) => {
         this.users = response;
         console.log(response);
       });
