@@ -19,6 +19,20 @@
 <script>
 import router from "@/router";
 export default {
+  /* mounted() {
+    // Make an HTTP GET request to fetch data from the backend
+    axios
+      .get("http://127.0.0.1:5000/add_user")
+      .then((response) => {
+        // Handle the response and update the component state
+        this.softwareList = response.data;
+      })
+      .catch((error) => {
+        // Handle errors
+        console.error("Error fetching data:", error);
+      });
+  },
+*/
   name: "SoftwareListingPage",
   methods: {
     goTo(label) {

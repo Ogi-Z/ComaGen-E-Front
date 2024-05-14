@@ -12,9 +12,6 @@
         <div v-for="post in posts" :key="post.id" class="post-preview">
           <h3>{{ post.title }}</h3>
           <p>{{ post.summary }}</p>
-          <router-link :to="{ name: 'BlogPost', params: { postId: post.id } }"
-            >Read More</router-link
-          >
         </div>
       </div>
     </section>
