@@ -1,7 +1,7 @@
 <template>
-  <div class="software-listing-container">
-    <v-col class="">
-      <v-row class="">
+  <div class="mt-10 software-listing-container">
+    <v-col>
+      <v-row>
         <v-card
           v-for="software in softwareList"
           :key="software.id"
@@ -18,29 +18,30 @@
 
 <script>
 import router from "@/router";
+import axios from "axios";
+
 export default {
-  /* mounted() {
+  mounted() {
     // Make an HTTP GET request to fetch data from the backend
-    axios
-      .get("http://127.0.0.1:5000/add_user")
-      .then((response) => {
-        // Handle the response and update the component state
-        this.softwareList = response.data;
-      })
-      .catch((error) => {
-        // Handle errors
-        console.error("Error fetching data:", error);
-      });
+    this.getUserData();
   },
-*/
   name: "SoftwareListingPage",
   methods: {
+    async getUserData() {
+      return axios.get("api/users").then((response) => {
+        this.users = response;
+        console.log(response);
+      });
+    },
+
     goTo(label) {
-      router.push("/software-listing/" + label.replace(" ", "_").toLowerCase());
+      //router.push("/software-listing/" + label.replace(" ", "_").toLowerCase());
+      console.log(this.users);
     },
   },
   data() {
     return {
+      users: [],
       softwareList: [
         {
           id: 1,
@@ -66,6 +67,25 @@ export default {
           description:
             "Another description about software. More details about what it does and its features.",
         },
+        {
+          id: 4,
+          name: "Another Software3",
+          description:
+            "Another description about software. More details about what it does and its features.",
+        },
+        {
+          id: 4,
+          name: "Another Software3",
+          description:
+            "Another description about software. More details about what it does and its features.",
+        },
+        {
+          id: 4,
+          name: "Another Software3",
+          description:
+            "Another description about software. More details about what it does and its features.",
+        },
+
         // Add more software entries as needed
       ],
     };
@@ -74,6 +94,11 @@ export default {
 </script>
 
 <style scoped>
+.center {
+  width: 90%;
+  margin: auto;
+}
+
 .software-listing-container {
   display: flex;
   flex-wrap: wrap;
