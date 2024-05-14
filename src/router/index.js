@@ -10,6 +10,7 @@ import SoftwareUsabilityPage from '@/components/sUsability.vue';
 import UserProblemSubmissionPage from '@/components/userProbSub.vue';
 import UserProfilePage from '@/components/userProfile.vue';
 import AuthConfirmPage from '@/components/authConfirm.vue';
+import forgotPassword from '@/components/forgotPassword.vue';
 const routes = [
   { path: '/', name: 'Home', component: HomePage },
   { path: '/login', name: 'Login', component: LoginPage },
@@ -21,7 +22,8 @@ const routes = [
   { path: '/software-usability', name: 'SoftwareUsability', component: SoftwareUsabilityPage },
   { path: '/submit-problem', name: 'SubmitProblem', component: UserProblemSubmissionPage },
   { path: '/authConfirm', name: 'AuthConfirm', component: AuthConfirmPage },
-  { path: '/user-profile', name: 'UserProfile', component: UserProfilePage }
+  { path: '/user-profile', name: 'UserProfile', component: UserProfilePage },
+ { path: '/forgot-password', name: 'ForgotPassword', component: forgotPassword }
 ];
 
 const router = createRouter({

@@ -27,18 +27,12 @@
       </div>
       <div class="form-group">
         <label for="details">Problem Details:</label>
-        <textarea
-          id="details"
-          v-model="problem.details"
-          class="input-field"
-          rows="4"
-        ></textarea>
+        <textarea id="details" v-model="problem.details" class="input-field" rows="4"></textarea>
       </div>
-      <button type="button" @click="addImage" class="button">Add Image</button>
+      <button type="button" @click="triggerFileInput" class="button">Add Image</button>
+      <input type="file" ref="fileInput" @change="handleFileChange" style="display: none;" accept="image/*">
       <div class="form-actions">
-        <button type="button" @click="cancel" class="button secondary">
-          Cancel
-        </button>
+        <button type="button" @click="cancel" class="button secondary">Cancel</button>
         <button type="submit" class="button">Add Finding</button>
       </div>
     </form>
@@ -55,17 +49,27 @@ export default {
         method: "",
         criteria: "",
         details: "",
+        image: null,  // Store the selected image
       },
     };
   },
   methods: {
     submitProblem() {
       console.log("Problem submitted:", this.problem);
-      // Here, you would typically handle the submission e.g., send it to a backend
+      // Handle the submission, e.g., send it to a backend
     },
-    addImage() {
-      console.log("Add image clicked");
-      // Trigger file upload or image addition logic
+    triggerFileInput() {
+      this.$refs.fileInput.click(); // Trigger the file input click
+    },
+    handleFileChange(event) {
+      const file = event.target.files[0]; // Get the selected file
+      if (file && file.type.startsWith('image')) {
+        this.problem.image = file;
+        console.log("Image added:", file.name);
+        // Optionally, you can also read the file to display a preview or directly upload it
+      } else {
+        alert("Please select an image file.");
+      }
     },
     cancel() {
       this.$router.go(-1); // Go back to previous page
