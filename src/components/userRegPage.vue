@@ -58,6 +58,7 @@ export default {
 </script>
 
 <style scoped>
+
 .registration-container {
   max-width: 400px;
   margin: auto;
@@ -70,11 +71,13 @@ export default {
 .form-group {
   margin-bottom: 20px;
 }
-
+h2 {
+  color: black;
+}
 .input-field {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #000000;
   border-radius: 4px;
 }
 

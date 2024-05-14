@@ -104,8 +104,11 @@
     padding: 10px;
     background-color: white;
     border-radius: 4px;
+    border: 1px solid black;
   }
-  
+  .items .item span {
+  color: black; 
+}
   .action-button {
     margin-top: 20px;
     background-color: #4CAF50;
