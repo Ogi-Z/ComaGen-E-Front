@@ -3,13 +3,13 @@
     <v-col>
       <v-row>
         <v-card
-          v-for="software in softwareList"
-          :key="software.id"
+          v-for="user in users.data"
+          :key="user.id"
           class="software-card ml-10"
-          @click="goTo(software.name)"
+          @click="goTo(user.name)"
         >
-          <h3>{{ software.name }}</h3>
-          <p>{{ software.description }}</p>
+          <h3>{{ user[1] }}</h3>
+          <p></p>
         </v-card>
       </v-row>
     </v-col>
