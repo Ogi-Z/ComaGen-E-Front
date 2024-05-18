@@ -33,6 +33,9 @@
 </template>
 
 <script>
+import axios from "axios";
+import router from "../router";
+
 export default {
   name: "LoginPage",
   data() {
@@ -42,10 +45,25 @@ export default {
     };
   },
   methods: {
-    login() {
-      // Burada login işlemi için API çağrısı yapılacak
-      console.log("Login attempt with:", this.email, this.password);
-      // Gerçek uygulamada burada kullanıcı kimlik doğrulama ve yönlendirme yapılacak
+    async login() {
+      await axios
+        .post("http://127.0.0.1:5000/login", {
+          useremail: this.email,
+          userpassword: this.password,
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            router.push("/");
+            alert("Login successful");
+          }
+        })
+        .catch((error) => {
+          if (error.response.status == 401) {
+            alert("User is not verified");
+          } else if (error.response.status == 409) {
+            alert("Invalid password");
+          }
+        });
     },
   },
 };
@@ -71,8 +89,6 @@ export default {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-
-
 
 .form-actions {
   display: flex;
