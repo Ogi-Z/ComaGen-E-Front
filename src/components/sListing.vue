@@ -30,7 +30,8 @@ export default {
     async getUserData() {
       return axios.get("http://127.0.0.1:5000/users").then((response) => {
         this.users = response;
-        console.log(response);
+        console.log(response.data);
+        console.log(this.softwareList);
       });
     },
 
