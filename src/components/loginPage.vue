@@ -1,36 +1,35 @@
 <template>
-  <div class="login-container">
-    <form @submit.prevent="login">
-      <div class="form-group">
-        <input
-          type="email"
-          v-model="email"
-          placeholder="Email"
-          class="input-field"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <input
-          type="password"
-          v-model="password"
-          placeholder="Password"
-          class="input-field"
-          required
-        />
-      </div>
-      <div class="form-actions">
-        <router-link to="/register" class="button secondary"
-          >Register</router-link
-        >
-        <router-link to="/forgot-password" class="button secondary"
-          >Forgot Password</router-link
-        >
-        <button type="submit" class="button">Login</button>
-      </div>
-    </form>
+  <div class="page-container">
+    <div class="login-container">
+      <form @submit.prevent="login">
+        <div class="form-group">
+          <input
+            type="email"
+            v-model="email"
+            placeholder="Email"
+            class="input-field"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            v-model="password"
+            placeholder="Password"
+            class="input-field"
+            required
+          />
+        </div>
+        <div class="form-actions">
+          <router-link to="/register" class="button secondary">Register</router-link>
+          <router-link to="/forgot-password" class="button secondary">Forgot Password</router-link>
+          <button type="submit" class="button">Login</button>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
+
 
 <script>
 import axios from "axios";
@@ -70,24 +69,51 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Tam sayfa yüksekliği */
+  background-color: #f0f0f0; /* Arka plan rengi */
+}
+
 .login-container {
-  max-width: 400px;
-  margin: 40px auto;
+  width: 350px;
   padding: 20px;
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 15px;
+  background-color: #b3c6a6; /* Renk tonunu UI'ya uygun şekilde ayarladım */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Times New Roman', serif; 
+  transform: translateY(-70px);
+}
+
+h2 {
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;
+  font-weight: 500; /* H2 başlık için font ağırlığını ayarladım */
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .input-field {
-  width: 100%;
+  width: calc(100% - 20px);
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  margin: 0 10px; /* Kenarlara boşluk ekledim */
+  border: none;
+  border-radius: 25px; /* Kenarları yuvarladım */
+  background-color: white;
+  color: #333;
+  font-size: 14px;
+}
+
+.input-field:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .form-actions {
@@ -97,17 +123,29 @@ export default {
 }
 
 .button {
-  background-color: #4caf50;
-  color: white;
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 25px; /* Kenarları yuvarladım */
+  background-color: #4CAF50; /* Renk tonunu UI'ya uygun şekilde ayarladım */
+  color: white;
   cursor: pointer;
-  text-align: center;
+  transition: background-color 0.3s ease;
+  font-weight: 500; /* Buton yazı font ağırlığını ayarladım */
+  font-size: 16px; /* Buton yazı boyutunu ayarladım */
+}
+
+.button:hover {
+  background-color: #45a049;
 }
 
 .button.secondary {
-  background-color: #f4f4f4;
-  color: #333;
+  background-color: transparent;
+  color: #4CAF50;
+}
+
+.button.secondary:hover {
+  background-color: #f5f5f5;
 }
 </style>
+
+

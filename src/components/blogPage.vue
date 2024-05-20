@@ -3,7 +3,7 @@
     <aside class="categories">
       <h2>Categories</h2>
       <ul>
-        <li v-for="category in categories" :key="category.id"></li>
+        <li v-for="category in categories" :key="category.id">{{ category.name }}</li>
       </ul>
     </aside>
     <section class="blog-posts">
@@ -19,32 +19,36 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "BlogPage",
   data() {
     return {
-      categories: [
-        { id: 1, name: "Category 1" },
-        { id: 2, name: "Category 2" },
-        // Daha fazla kategori ekleyin
-      ],
-      posts: [
-        {
-          id: 1,
-          title: "Example Software",
-          summary: "Description about software...",
-        },
-        {
-          id: 2,
-          title: "Example Software 2",
-          summary: "Description about another software...",
-        },
-        // Daha fazla post ekleyin
-      ],
+      categories: [],
+      posts: [],
     };
+  },
+  created() {
+    this.fetchData();
+  },
+  methods: {
+    async fetchData() {
+      try {
+        const [categoriesResponse, postsResponse] = await Promise.all([
+          axios.get("http://127.0.0.1:5000/categories"),
+          axios.get("http://127.0.0.1:5000/posts")
+        ]);
+        this.categories = categoriesResponse.data;
+        this.posts = postsResponse.data;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    },
   },
 };
 </script>
+
 
 <style scoped>
 .blog-container {
