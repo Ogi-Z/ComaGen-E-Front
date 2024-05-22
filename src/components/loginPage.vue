@@ -21,15 +21,18 @@
           />
         </div>
         <div class="form-actions">
-          <router-link to="/register" class="button secondary">Register</router-link>
-          <router-link to="/forgot-password" class="button secondary">Forgot Password</router-link>
+          <router-link to="/register" class="button secondary"
+            >Register</router-link
+          >
+          <router-link to="/forgot-password" class="button secondary"
+            >Forgot Password</router-link
+          >
           <button type="submit" class="button">Login</button>
         </div>
       </form>
     </div>
   </div>
 </template>
-
 
 <script>
 import axios from "axios";
@@ -52,6 +55,9 @@ export default {
         })
         .then((response) => {
           if (response.status === 200) {
+            const userId = response.data[1].id;
+            console.log(userId);
+            this.$store.dispatch("fetchUser", userId);
             router.push("/");
             alert("Login successful");
           }
@@ -69,7 +75,7 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
 .page-container {
   display: flex;
@@ -85,7 +91,7 @@ export default {
   border-radius: 15px;
   background-color: #b3c6a6; /* Renk tonunu UI'ya uygun şekilde ayarladım */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  font-family: 'Times New Roman', serif; 
+  font-family: "Times New Roman", serif;
   transform: translateY(-70px);
 }
 
@@ -126,7 +132,7 @@ h2 {
   padding: 10px 20px;
   border: none;
   border-radius: 25px; /* Kenarları yuvarladım */
-  background-color: #4CAF50; /* Renk tonunu UI'ya uygun şekilde ayarladım */
+  background-color: #4caf50; /* Renk tonunu UI'ya uygun şekilde ayarladım */
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -140,12 +146,10 @@ h2 {
 
 .button.secondary {
   background-color: transparent;
-  color: #4CAF50;
+  color: #4caf50;
 }
 
 .button.secondary:hover {
   background-color: #f5f5f5;
 }
 </style>
-
-
