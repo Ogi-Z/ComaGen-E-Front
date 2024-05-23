@@ -141,7 +141,7 @@ export default {
   border-radius: 15px;
   background-color: #b3c6a6;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  font-family: "Times New Roman", serif;
+  font-family: "Neucha", serif;
   transform: translateY(-100px);
 }
 
@@ -167,14 +167,16 @@ export default {
 
 .button {
   padding: 10px 20px;
+  width: 50%;
   border: none;
   border-radius: 25px;
-  background-color: #4caf50;
+  background-color: #367038;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-weight: 500;
   font-size: 16px;
+  margin-left: 25%;
 }
 
 .button:hover {

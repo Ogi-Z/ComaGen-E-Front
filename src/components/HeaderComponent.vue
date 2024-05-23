@@ -9,7 +9,7 @@
       <router-link to="/register" v-if="!isLoggedIn">Register</router-link>
       <router-link to="/login" v-if="!isLoggedIn">Login</router-link>
 
-      <router-link to="/admin">Admin Panel</router-link>
+      <router-link to="/admin" v-if="user[6] == 1">Admin Panel</router-link>
       <router-link to="/blog">Blog</router-link>
       <router-link to="/software-listing">Software Listing</router-link>
       <router-link to="/submit-problem">Submit Problem</router-link>
@@ -20,12 +20,15 @@
         >Logout</router-link
       >
     </div>
-    <div v-if="user"></div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
+  mounted() {},
+
   methods: {
     logOut() {
       location.reload();
@@ -51,7 +54,7 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Neucha&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Neucha&display=swap");
 
 .header {
   display: flex;
@@ -60,7 +63,7 @@ export default {
   padding: 10px 20px;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-family: 'Neucha', serif;
+  font-family: "Neucha", serif;
 }
 
 .logo {
@@ -69,7 +72,6 @@ export default {
   font-weight: 700;
   color: #3a5f3c;
   text-decoration: none;
-  
 }
 
 .nav-links {
