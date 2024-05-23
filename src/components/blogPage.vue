@@ -55,7 +55,8 @@ export default {
 
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Newsreader:wght@400;500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Neucha&display=swap');
 
 .page-container {
   display: flex;
@@ -65,7 +66,7 @@ export default {
   background-color: white; 
   height: 100vh;
   overflow-y: auto;
-  font-family: 'Times New Roman', serif; 
+  font-family: 'Neucha', serif;
 }
 
 .blog-container {

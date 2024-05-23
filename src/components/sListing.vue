@@ -61,13 +61,13 @@ export default {
   padding: 20px;
   border-radius: 15px;
   background-color: #b3c6a6;
-  font-family: "Times New Roman", serif;
+  font-family: 'Times New Roman', serif;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transform: translateY(-150px);
 }
 
 .software-card {
-  background-color: #b3c6a6;
+  background-color: #426B1F7D;
   border-radius: 15px;
   padding: 20px;
   margin-bottom: 20px;
@@ -77,18 +77,20 @@ export default {
 .software-card h3 {
   font-weight: 700;
   margin-bottom: 10px;
+  color: #132012; 
 }
 
 .software-card p {
   margin-bottom: 20px;
+  color: #132012; 
 }
 
 .button {
   padding: 10px 20px;
   border: none;
   border-radius: 25px;
-  background-color: #4caf50;
-  color: white;
+  background-color: #458047;
+  color: rgb(0, 0, 0);
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-weight: 500;

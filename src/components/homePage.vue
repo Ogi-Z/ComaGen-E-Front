@@ -40,18 +40,19 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: white;
+  
 }
 
 h1 {
   color: #333;
-  font-family: "Times New Roman", serif;
+  font-family: 'Neucha', serif;
   margin-bottom: 20px;
 }
 
 p {
   color: #666;
-  font-family: "Times New Roman", serif;
-  font-size: 16px;
+  font-family: 'Neucha', serif;
+  font-size: 20px;
   line-height: 1.6;
 }
 </style>

@@ -51,7 +51,7 @@ export default {
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Neucha&display=swap');
 
 .header {
   display: flex;
@@ -60,15 +60,16 @@ export default {
   padding: 10px 20px;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-family: "Times New Roman", serif;
+  font-family: 'Neucha', serif;
 }
 
 .logo {
   font-family: "Newsreader";
   font-size: 36px;
   font-weight: 700;
-  color: #4caf50;
+  color: #3a5f3c;
   text-decoration: none;
+  
 }
 
 .nav-links {
