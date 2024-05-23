@@ -75,6 +75,7 @@ export default {
   methods: {
     submitProblem() {
       console.log("Problem submitted:", this.problem);
+      this.$router.push({ name: 'homePage' });
     },
     triggerFileInput() {
       this.$refs.fileInput.click();
