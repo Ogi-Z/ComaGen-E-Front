@@ -7,6 +7,14 @@
         class="software-card"
       >
         <h3>{{ software.name }}</h3>
+        <p>
+          Irure excepteur reprehenderit sint et cupidatat consectetur cupidatat
+          proident ipsum in qui. Exercitation ut eu velit anim sint in ea culpa
+          ea nulla. Dolore consectetur eiusmod dolor officia do sint occaecat ex
+          nostrud tempor occaecat ut deserunt consectetur. Irure dolore proident
+          pariatur deserunt eu aliquip quis laboris veniam. Anim cillum enim est
+          veniam consequat officia quis.
+        </p>
 
         <button class="button">Read More</button>
       </div>
@@ -71,9 +79,8 @@ export default {
   max-width: 1000px;
   padding: 20px;
   border-radius: 15px;
-  background-color: #fcfcfc;
+  background-color: #ffffff;
   font-family: "Neucha", serif;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transform: translateY(-150px);
 }
 
@@ -83,16 +90,20 @@ export default {
   padding: 20px;
   margin-bottom: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  height: 200px;
+  height: 250px;
 }
 
 .software-card h3 {
-  font-weight: 700;
+  font-size: 40px;
   margin-bottom: 10px;
+  margin-left: 25px;
+  margin-right: 25px;
   color: #000000;
 }
 
 .software-card p {
+  margin-left: 25px;
+  margin-right: 25px;
   margin-bottom: 20px;
   color: #ffffff;
 }
@@ -102,13 +113,13 @@ export default {
   border: none;
   border-radius: 25px;
   background-color: #426b1f;
-  color: rgb(0, 0, 0);
+  color: #ffffff;
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-weight: 500;
   font-size: 16px;
   position: relative;
-  top: 50%;
+
   left: 88%;
 }
 
