@@ -47,6 +47,22 @@
           </div>
         </div>
       </section>
+
+      <section class="admin-section" id="blogs">
+        <h2>Blogs</h2>
+        <div class="items">
+          <div v-for="blog in blogs" :key="blog.id" class="item">
+            <div class="item-info">
+              <div class="item-avatar">{{ blog.title.charAt(0) }}</div>
+              <span>{{ blog.title }}</span>
+            </div>
+            <div class="item-actions">
+              <button @click="approveBlog(blog.id)" class="approve-btn">✔</button>
+              <button @click="rejectBlog(blog.id)" class="reject-btn">✘</button>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
     <div class="action-buttons">
       <router-link to="/addNewSoftware" class="action-button">Add New Software</router-link>
@@ -68,6 +84,7 @@ export default {
       users: [],
       findings: [],
       accounts: [],
+      blogs: [], // Yeni blog verileri için ekleme
     };
   },
   created() {
@@ -76,14 +93,16 @@ export default {
   methods: {
     async fetchData() {
       try {
-        const [usersResponse, findingsResponse, accountsResponse] = await Promise.all([
+        const [usersResponse, findingsResponse, accountsResponse, blogsResponse] = await Promise.all([
           axios.get("http://127.0.0.1:5000/users"),
           axios.get("http://127.0.0.1:5000/findings"),
           axios.get("http://127.0.0.1:5000/accounts"),
+          axios.get("http://127.0.0.1:5000/blogs"), // Blog verilerini almak için yeni istek
         ]);
         this.users = usersResponse.data;
         this.findings = findingsResponse.data;
         this.accounts = accountsResponse.data;
+        this.blogs = blogsResponse.data; // Blog verilerini ekleme
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -102,6 +121,22 @@ export default {
         this.fetchData();
       } catch (error) {
         console.error("Error rejecting user:", error);
+      }
+    },
+    async approveBlog(id) {
+      try {
+        await axios.post(`http://127.0.0.1:5000/blogs/${id}/approve`);
+        this.fetchData();
+      } catch (error) {
+        console.error("Error approving blog:", error);
+      }
+    },
+    async rejectBlog(id) {
+      try {
+        await axios.post(`http://127.0.0.1:5000/blogs/${id}/reject`);
+        this.fetchData();
+      } catch (error) {
+        console.error("Error rejecting blog:", error);
       }
     },
     async addNewBlog() {
@@ -216,8 +251,9 @@ export default {
     align-items: center;
     gap: 10px;
   }
+
   .router-link {
-    text-decoration: none; /* Altındaki çizgiyi kaldırır */
+    text-decoration: none; 
   }
 
   .item-avatar {
