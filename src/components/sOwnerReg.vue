@@ -136,7 +136,8 @@ export default {
 }
 
 .registration-container {
-  width: 400px;
+  width: 800px;
+  height: 450px;
   padding: 20px;
   border-radius: 15px;
   background-color: #b3c6a6;
