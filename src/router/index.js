@@ -11,6 +11,8 @@ import UserProblemSubmissionPage from '@/components/userProbSub.vue';
 import UserProfilePage from '@/components/userProfile.vue';
 import AuthConfirmPage from '@/components/authConfirm.vue';
 import forgotPassword from '@/components/forgotPassword.vue';
+import AddNewBlogPage from "@/components/addNewBlog.vue";
+import AddNewSoftwarePage from "@/components/addNewSoftware.vue";
 const routes = [
   { path: '/', name: 'Home', component: HomePage },
   { path: '/login', name: 'Login', component: LoginPage },
@@ -23,7 +25,9 @@ const routes = [
   { path: '/submit-problem', name: 'SubmitProblem', component: UserProblemSubmissionPage },
   { path: '/authConfirm', name: 'AuthConfirm', component: AuthConfirmPage },
   { path: '/user-profile', name: 'UserProfile', component: UserProfilePage },
- { path: '/forgot-password', name: 'ForgotPassword', component: forgotPassword }
+  { path: '/forgot-password', name: 'ForgotPassword', component: forgotPassword },
+  { path: '/addNewBlog', name: 'AddNewBlog', component: AddNewBlogPage },
+  { path: '/addNewSoftware', name: 'AddNewSoftware', component: AddNewSoftwarePage }
 ];
 
 const router = createRouter({

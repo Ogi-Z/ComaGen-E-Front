@@ -3,33 +3,61 @@
     <h1>Authentication</h1>
     <p>Please enter the code sent to your email address to proceed.</p>
     <form @submit.prevent="confirmCode">
-      <input type="text" v-model="authCode" placeholder="Enter your code here" required>
+      <input
+        type="text"
+        v-model="authCode"
+        placeholder="Enter your code here"
+        required
+      />
       <button type="submit">Submit</button>
     </form>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import router from "../router";
+import axios from "axios";
 
 export default {
-  name: 'AuthConfirmPage',
-  setup() {
-    const authCode = ref('');
-    const router = useRouter();
-
-    const confirmCode = () => {
-      if (authCode.value === '123456') {
-        router.push('/');
-      } else {
-        alert('Invalid code, please try again.');
-      }
+  data() {
+    return {
+      authCode: "",
     };
+  },
 
-    return { authCode, confirmCode };
-  }
-}
+  methods: {
+    confirmCode() {
+      return axios
+        .post(
+          "http://127.0.0.1:5000/verify",
+          {
+            verificationkey: this.authCode,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json", 
+            },
+          }
+        )
+
+        .then((response) => {
+          
+          if (response.status === 200) {
+            router.push("/");
+            alert("Successfully verified");
+          }
+        })
+        .catch((error) => {
+          
+          if (error.response.status > 400 && error.response.status < 500) {
+            alert("Invalid code, please try again.");
+          }
+        });
+    },
+  },
+
+  name: "AuthConfirmPage",
+};
 </script>
 
 <style scoped>
@@ -46,7 +74,7 @@ export default {
   color: black;
 }
 .auth-container p {
-  color: black; 
+  color: black;
 }
 input[type="text"] {
   width: 100%;
@@ -60,7 +88,7 @@ button {
   padding: 10px 20px;
   margin-top: 20px;
   color: rgb(0, 0, 0);
-  background-color: #4CAF50;
+  background-color: #4caf50;
   border: none;
   border-radius: 5px;
   cursor: pointer;
