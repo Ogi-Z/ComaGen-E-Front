@@ -57,7 +57,7 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Neucha&display=swap');
 .page-container {
   display: flex;
   justify-content: center;
@@ -71,14 +71,14 @@ export default {
   max-width: 1000px;
   padding: 20px;
   border-radius: 15px;
-  background-color: #b3c6a6;
-  font-family: "Times New Roman", serif;
+  background-color: #fcfcfc;
+  font-family: 'Neucha', serif;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transform: translateY(-150px);
 }
 
 .software-card {
-  background-color: #426b1f7d;
+  background-color: #4d7c247d;
   border-radius: 15px;
   padding: 20px;
   margin-bottom: 20px;
@@ -88,12 +88,12 @@ export default {
 .software-card h3 {
   font-weight: 700;
   margin-bottom: 10px;
-  color: #132012;
+  color: #ffffff;
 }
 
 .software-card p {
   margin-bottom: 20px;
-  color: #132012;
+  color: #ffffff;
 }
 
 .button {
