@@ -52,7 +52,8 @@ export default {
 }
 
 .logo {
-  font-size: 24px;
+  font-family: "Newsreader";
+  font-size: 36px;
   font-weight: 700;
   color: #4caf50;
   text-decoration: none;
