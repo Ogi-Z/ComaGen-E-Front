@@ -10,10 +10,8 @@
               <span>{{ user.name }}</span>
             </div>
             <div class="item-actions">
-              <button @click="approveUser(user.id)" class="approve-btn">
-                ✔
-              </button>
-              <button @click="rejectUser(user.id)" class="reject-btn">✖</button>
+              <button @click="approveUser(user.id)" class="approve-btn">✔</button>
+              <button @click="rejectUser(user.id)" class="reject-btn">✘</button>
             </div>
           </div>
         </div>
@@ -28,12 +26,8 @@
               <span>{{ finding.course }}</span>
             </div>
             <div class="item-actions">
-              <button @click="approveFinding(finding.id)" class="approve-btn">
-                ✔
-              </button>
-              <button @click="rejectFinding(finding.id)" class="reject-btn">
-                ✖
-              </button>
+              <button @click="approveFinding(finding.id)" class="approve-btn">✔</button>
+              <button @click="rejectFinding(finding.id)" class="reject-btn">✘</button>
             </div>
           </div>
         </div>
@@ -53,37 +47,10 @@
           </div>
         </div>
       </section>
-
-      <div class="action-buttons">
-        <button @click="addNewSoftware" class="action-button">
-          Add New Software
-        </button>
-        <button class="action-button" @click="dialog = true">
-          Add New Blog
-        </button>
-
-        <v-dialog v-model="dialog" width="auto">
-          <v-card>
-            <v-card-text
-              ><div class="form-group">
-                <v-text-field
-                  v-model="topic"
-                  placeholder="Topic"
-                  class="input-field"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <v-textarea v-model="text" label="Label"></v-textarea>
-              </div>
-            </v-card-text>
-            <template v-slot:actions>
-              <v-btn @click="dialog = false"> Cancel</v-btn>
-              <v-btn @click="addNewBlog()"> Submit</v-btn>
-            </template>
-          </v-card>
-        </v-dialog>
-      </div>
+    </div>
+    <div class="action-buttons">
+      <router-link to="/addNewSoftware" class="action-button">Add New Software</router-link>
+      <router-link to="/addNewBlog" class="action-button">Add New Blog</router-link>
     </div>
   </div>
 </template>
@@ -109,12 +76,11 @@ export default {
   methods: {
     async fetchData() {
       try {
-        const [usersResponse, findingsResponse, accountsResponse] =
-          await Promise.all([
-            axios.get("http://127.0.0.1:5000/users"),
-            axios.get("http://127.0.0.1:5000/findings"),
-            axios.get("http://127.0.0.1:5000/accounts"),
-          ]);
+        const [usersResponse, findingsResponse, accountsResponse] = await Promise.all([
+          axios.get("http://127.0.0.1:5000/users"),
+          axios.get("http://127.0.0.1:5000/findings"),
+          axios.get("http://127.0.0.1:5000/accounts"),
+        ]);
         this.users = usersResponse.data;
         this.findings = findingsResponse.data;
         this.accounts = accountsResponse.data;
@@ -147,12 +113,10 @@ export default {
           blog_text: this.text,
         });
       } catch (error) {
-        console.error("Error adding a new blog", error);
+        console.error("Error adding new blog:", error);
       }
-
       this.dialog = false;
     },
-
     async addNewSoftware() {
       try {
         await axios.post("http://127.0.0.1:5000/software/add");
@@ -186,10 +150,10 @@ export default {
 
 .page-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   height: 100vh;
-  background-color: white; /* Arka plan rengi beyaz */
+  background-color: white;
 }
 
 .admin-container {
@@ -197,10 +161,9 @@ export default {
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
-  align-items: flex-start;
+  align-items: start;
   padding: 20px;
   font-family: "Times New Roman", serif;
-  transform: translateY(-150px);
 }
 
 .admin-section {
@@ -208,12 +171,12 @@ export default {
   background-color: #b3c6a6;
   border-radius: 15px;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 .admin-section h2 {
   text-align: center;
-  color: #333;
+  color: #ffffff;
   font-weight: 700;
   margin-bottom: 20px;
 }
@@ -235,7 +198,7 @@ export default {
   background-color: #fff;
   border-radius: 10px;
   padding: 10px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px rgba(243, 242, 242, 0.1);
 }
 
 .item-info {
@@ -275,8 +238,6 @@ export default {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
 }
 
 .approve-btn:hover,

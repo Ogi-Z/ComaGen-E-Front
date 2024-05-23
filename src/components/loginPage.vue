@@ -81,15 +81,15 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Tam sayfa yüksekliği */
-  background-color: #f0f0f0; /* Arka plan rengi */
+  height: 100vh; 
+  background-color: #f0f0f0; 
 }
 
 .login-container {
   width: 350px;
   padding: 20px;
   border-radius: 15px;
-  background-color: #b3c6a6; /* Renk tonunu UI'ya uygun şekilde ayarladım */
+  background-color: #b3c6a6; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   font-family: "Times New Roman", serif;
   transform: translateY(-70px);
@@ -99,7 +99,7 @@ h2 {
   text-align: center;
   color: white;
   margin-bottom: 20px;
-  font-weight: 500; /* H2 başlık için font ağırlığını ayarladım */
+  font-weight: 500; 
 }
 
 .form-group {
@@ -109,9 +109,9 @@ h2 {
 .input-field {
   width: calc(100% - 20px);
   padding: 10px;
-  margin: 0 10px; /* Kenarlara boşluk ekledim */
+  margin: 0 10px; 
   border: none;
-  border-radius: 25px; /* Kenarları yuvarladım */
+  border-radius: 25px;
   background-color: white;
   color: #333;
   font-size: 14px;
@@ -131,13 +131,13 @@ h2 {
 .button {
   padding: 10px 20px;
   border: none;
-  border-radius: 25px; /* Kenarları yuvarladım */
-  background-color: #4caf50; /* Renk tonunu UI'ya uygun şekilde ayarladım */
+  border-radius: 25px; 
+  background-color: #4caf50;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-weight: 500; /* Buton yazı font ağırlığını ayarladım */
-  font-size: 16px; /* Buton yazı boyutunu ayarladım */
+  font-weight: 500; 
+  font-size: 16px; 
 }
 
 .button:hover {

@@ -35,7 +35,7 @@ export default {
           },
           {
             headers: {
-              "Content-Type": "application/json", // Ensure the content type matches what the server expects
+              "Content-Type": "application/json", 
             },
           }
         )

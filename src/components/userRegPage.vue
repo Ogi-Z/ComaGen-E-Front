@@ -7,7 +7,7 @@
         <input
           type="text"
           v-model="user.name"
-          placeholder="Name Surname"
+          placeholder="Name Surname*"
           class="input-field"
           required
         />
@@ -16,7 +16,7 @@
         <input
           type="email"
           v-model="user.email"
-          placeholder="Email"
+          placeholder="Email*"
           class="input-field"
           required
         />
@@ -25,7 +25,7 @@
         <input
           type="password"
           v-model="user.password"
-          placeholder="Password"
+          placeholder="Password*"
           class="input-field"
           required
         />
@@ -34,7 +34,7 @@
         <input
           type="password"
           v-model="user.confirmPassword"
-          placeholder="Confirm Password"
+          placeholder="Confirm Password*"
           class="input-field"
           required
         />
@@ -86,7 +86,7 @@ export default {
   methods: {
     async registerUser() {
       try {
-        await axios.post("http://127.0.0.1:5000/add_user", {
+        const response = await axios.post("http://127.0.0.1:5000/add_user", {
           username: this.user.name,
           useremail: this.user.email,
           userpassword: this.user.password,
@@ -94,7 +94,10 @@ export default {
           usergender: this.user.gender,
           role_id: "0",
         });
-        router.push("/authConfirm");
+        // Kontrol amaçlı: Başarılı bir kayıt işlemi olduğunu varsayalım
+        if (response && response.status === 200) {
+          this.$router.push("/authConfirm");
+        }
       } catch (error) {
         console.error("Error registering user:", error);
       }
@@ -102,6 +105,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');

@@ -1,137 +1,104 @@
 <template>
-  <div class="mt-10 software-listing-container">
-    <v-col>
-      <v-row>
-        <v-card
-          v-for="user in users.data"
-          :key="user.id"
-          class="software-card ml-10"
-          @click="goTo(user.name)"
-        >
-          <h3>{{ user[1] }}</h3>
-          <p></p>
-        </v-card>
-      </v-row>
-    </v-col>
+  <div class="page-container">
+    <div class="software-listing-container">
+      <div v-for="software in softwarelist" :key="software.id" class="software-card">
+        <h3>{{ software.name }}</h3>
+        <p>{{ software.description }}</p>
+        <button class="button">Read More</button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import router from "@/router";
-import axios from "axios";
+import axios from 'axios';
 
 export default {
-  mounted() {
-    // Make an HTTP GET request to fetch data from the backend
-    this.getUserData();
-  },
-
-  methods: {
-    async getUserData() {
-      return axios.get("http://127.0.0.1:5000/users").then((response) => {
-        this.users = response;
-        console.log(response.data);
-        console.log(this.softwareList);
-      });
-    },
-
-    goTo(label) {
-      //router.push("/software-listing/" + label.replace(" ", "_").toLowerCase());
-      console.log(this.users);
-    },
-  },
+  name: 'SoftwareListingPage',
   data() {
     return {
-      users: [],
-      softwareList: [
+      softwarelist: [
         {
           id: 1,
-          name: "Example Software",
-          description:
-            "Description about software. Description about software. Description about software.",
+          name: 'Example Software 1',
+          description: 'Description about software. Description about software.'
         },
         {
           id: 2,
-          name: "Another Software",
-          description:
-            "Another description about software. More details about what it does and its features.",
-        },
-        {
-          id: 3,
-          name: "Another Software2",
-          description:
-            "Another description about software. More details about what it does and its features.",
-        },
-        {
-          id: 4,
-          name: "Another Software3",
-          description:
-            "Another description about software. More details about what it does and its features.",
-        },
-        {
-          id: 4,
-          name: "Another Software3",
-          description:
-            "Another description about software. More details about what it does and its features.",
-        },
-        {
-          id: 4,
-          name: "Another Software3",
-          description:
-            "Another description about software. More details about what it does and its features.",
-        },
-        {
-          id: 4,
-          name: "Another Software3",
-          description:
-            "Another description about software. More details about what it does and its features.",
-        },
-
-        // Add more software entries as needed
-      ],
+          name: 'Example Software 2',
+          description: 'Another description about software. More details about what it does and its features.'
+        }
+      ]
     };
   },
+  mounted() {
+    this.getSoftwareList();
+  },
+  methods: {
+    async getSoftwareList() {
+      try {
+        const response = await axios.get('http://127.0.0.1:5000/software');
+        this.softwarelist.push(...response.data);
+      } catch (error) {
+        console.error('Error fetching software list:', error);
+      }
+    }
+  }
 };
 </script>
 
 <style scoped>
-.center {
-  width: 90%;
-  margin: auto;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: white;
 }
 
 .software-listing-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  width: 80%;
+  max-width: 1000px;
   padding: 20px;
+  border-radius: 15px;
+  background-color: #b3c6a6;
+  font-family: 'Times New Roman', serif;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(-150px);
 }
 
 .software-card {
-  width: 45%; /* Adjust based on desired layout */
-  background-color: #f4f4f4;
-  margin: 10px;
+  background-color: #b3c6a6;
+  border-radius: 15px;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .software-card h3 {
-  color: #333;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .software-card p {
-  color: #666;
-  font-size: 14px;
+  margin-bottom: 20px;
 }
 
-.read-more-button {
-  display: inline-block;
-  margin-top: 10px;
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
   background-color: #4caf50;
   color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.button:hover {
+  background-color: #45a049;
 }
 </style>

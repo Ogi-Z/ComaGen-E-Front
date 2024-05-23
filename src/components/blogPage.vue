@@ -1,28 +1,31 @@
 <template>
-  <div class="blog-container">
-    <aside class="categories">
-      <h2>Categories</h2>
-      <ul>
-        <li v-for="category in categories" :key="category.id">{{ category.name }}</li>
-      </ul>
-    </aside>
-    <section class="blog-posts">
-      <h2>Blog</h2>
-      <div class="posts">
-        <div v-for="post in posts" :key="post.id" class="post-preview">
-          <h3>{{ post.title }}</h3>
-          <p>{{ post.summary }}</p>
+  <div class="page-container">
+    <div class="blog-container">
+      <aside class="categories">
+        <h2>Categories</h2>
+        <ul>
+          <li v-for="category in categories" :key="category.id">{{ category.name }}</li>
+        </ul>
+      </aside>
+      <section class="blog-posts">
+        <h2>Blog</h2>
+        <div class="posts">
+          <div v-for="post in posts" :key="post.id" class="post-preview">
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.summary }}</p>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </div>
 </template>
 
+
 <script>
-import axios from "axios";
+import axios from 'axios';
 
 export default {
-  name: "BlogPage",
+  name: 'BlogPage',
   data() {
     return {
       categories: [],
@@ -36,13 +39,13 @@ export default {
     async fetchData() {
       try {
         const [categoriesResponse, postsResponse] = await Promise.all([
-          axios.get("http://127.0.0.1:5000/categories"),
-          axios.get("http://127.0.0.1:5000/posts")
+          axios.get('http://127.0.0.1:5000/categories'),
+          axios.get('http://127.0.0.1:5000/posts'),
         ]);
         this.categories = categoriesResponse.data;
         this.posts = postsResponse.data;
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
       }
     },
   },
@@ -50,58 +53,89 @@ export default {
 </script>
 
 
+
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  background-color: white; 
+  height: 100vh;
+  overflow-y: auto;
+  font-family: 'Times New Roman', serif; 
+}
+
 .blog-container {
   display: flex;
-  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.categories, .blog-posts {
+  background-color: #b3c6a6; 
+  border-radius: 15px;
   padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .categories {
-  width: 20%;
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
-}
-
-.categories h2,
-.blog-posts h2 {
-  color: #4caf50;
-}
-
-.categories ul {
-  list-style: none;
-  padding: 0;
-}
-
-.categories li a {
-  color: #0645ad;
-  text-decoration: none;
+  flex: 1;
+  max-width: 250px;
 }
 
 .blog-posts {
-  width: 75%;
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
+  flex: 2;
+}
+
+h2 {
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background-color: white;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+li:hover {
+  background-color: #e0e0e0;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .post-preview {
-  margin-bottom: 20px;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 10px;
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.post-preview h3 {
-  color: #333;
+h3 {
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
-.post-preview p {
-  color: #666;
-}
-
-.post-preview a {
-  color: #4caf50;
-  text-decoration: none;
+p {
+  margin-bottom: 0;
 }
 </style>
+
