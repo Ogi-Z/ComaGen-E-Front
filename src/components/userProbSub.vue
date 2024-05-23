@@ -57,8 +57,9 @@
   </div>
 </template>
 
-
 <script>
+import axios from 'axios';
+
 export default {
   name: "UserProblemSubmissionPage",
   data() {
@@ -73,9 +74,31 @@ export default {
     };
   },
   methods: {
-    submitProblem() {
+    async submitProblem() {
       console.log("Problem submitted:", this.problem);
-      this.$router.push({ name: 'homePage' });
+      const formData = new FormData();
+      formData.append('software', this.problem.software);
+      formData.append('method', this.problem.method);
+      formData.append('criteria', this.problem.criteria);
+      formData.append('details', this.problem.details);
+      if (this.problem.image) {
+        formData.append('image', this.problem.image);
+      }
+
+      try {
+        const response = await axios.post('http://127.0.0.1:5000/softwareUsability', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        if (response.status === 200) {
+          alert('Problem submitted successfully');
+          this.$router.push('/homePage'); // Problemi submit ettikten sonra homePage'e yönlendirme
+        }
+      } catch (error) {
+        console.error('Error submitting problem:', error);
+        alert('There was an error submitting the problem. Please try again.');
+      }
     },
     triggerFileInput() {
       this.$refs.fileInput.click();
@@ -95,7 +118,6 @@ export default {
   },
 };
 </script>
-
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
@@ -179,4 +201,3 @@ textarea.input-field {
   background-color: #c0392b;
 }
 </style>
-
