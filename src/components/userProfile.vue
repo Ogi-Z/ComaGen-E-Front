@@ -3,10 +3,10 @@
     <div class="profile-container">
       <div class="profile-card">
         <div class="profile-info">
-          <h2>{{ user.initials }}</h2>
-          <p><strong>Software User</strong></p>
-          <p>Attend Date: {{ user.attendDate }}</p>
-          <p>Total Findings: {{ user.totalFindings }}</p>
+          <h2>{{ user[1].charAt(0) }}</h2>
+          <p>
+            <strong>{{ user[1] }} {{ user[2] }}</strong>
+          </p>
         </div>
       </div>
       <div class="findings-section">
@@ -25,47 +25,54 @@
   </div>
 </template>
 
-  
-  <script>
-  export default {
-    name: "UserProfilePage",
-    data() {
-      return {
-        user: {
-          initials: "A",
-          attendDate: "12/02/2024",
-          totalFindings: 12345,
-        },
-        newFinding: "",
-      };
-    },
-    methods: {
-      addImage() {
-        console.log("Add image to finding");
-  
-      },
-      saveFinding() {
-        console.log("Save finding:", this.newFinding);
+<script>
+import axios from "axios";
 
-        this.newFinding = "";
-      },
+export default {
+  name: "UserProfilePage",
+  mounted() {},
+
+  computed: {
+    user() {
+      if (this.$store.state.user) {
+        this.isLoggedIn = true;
+        console.log(this.isLoggedIn);
+        return this.$store.state.user;
+      }
     },
-  };
-  </script>
-  
-  
-  <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+  },
+
+  data() {
+    return {
+      newFinding: "",
+      userByID: "",
+    };
+  },
+  methods: {
+    addImage() {
+      console.log("Add image to finding");
+    },
+    saveFinding() {
+      console.log("Save finding:", this.newFinding);
+
+      this.newFinding = "";
+    },
+  },
+};
+</script>
+
+<style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
 .page-container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding: 20px;
-  background-color: white; 
+  background-color: white;
   height: 100vh;
   overflow-y: auto;
-  font-family: 'Times New Roman', serif; 
+  font-family: "Times New Roman", serif;
 }
 
 .profile-container {
@@ -75,7 +82,8 @@
   max-width: 1200px;
 }
 
-.profile-card, .findings-section {
+.profile-card,
+.findings-section {
   background-color: #b3c6a6;
   border-radius: 15px;
   padding: 20px;
@@ -98,7 +106,7 @@
 }
 
 .profile-info h2 {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border-radius: 50%;
   width: 80px;
@@ -128,9 +136,9 @@ h2 {
 .input-field {
   width: calc(100% - 20px);
   padding: 10px;
-  margin: 0 10px; 
+  margin: 0 10px;
   border: none;
-  border-radius: 25px; 
+  border-radius: 25px;
   background-color: white;
   color: #333;
   font-size: 14px;
@@ -150,13 +158,13 @@ h2 {
 .button {
   padding: 10px 20px;
   border: none;
-  border-radius: 25px; 
-  background-color: #4CAF50; 
+  border-radius: 25px;
+  background-color: #4caf50;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-weight: 500; 
-  font-size: 16px; 
+  font-weight: 500;
+  font-size: 16px;
 }
 
 .button:hover {

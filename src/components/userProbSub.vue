@@ -5,7 +5,7 @@
       <form @submit.prevent="submitProblem">
         <div class="form-group">
           <label for="software">Software:</label>
-          <select id="software" v-model="problem.software" class="input-field">
+          <select id="software" v-model="software" class="input-field">
             <option disabled value="">Choose a software</option>
             <option>Udemy</option>
             <option>Coursera</option>
@@ -13,14 +13,14 @@
         </div>
         <div class="form-group">
           <label for="method">Evaluation Method:</label>
-          <select id="method" v-model="problem.method" class="input-field">
+          <select id="method" v-model="method" class="input-field">
             <option>User Testing</option>
             <option>Heuristic Evaluation</option>
           </select>
         </div>
         <div class="form-group">
           <label for="criteria">Usability Criteria:</label>
-          <select id="criteria" v-model="problem.criteria" class="input-field">
+          <select id="criteria" v-model="criteria" class="input-field">
             <option>Effectiveness</option>
             <option>Efficiency</option>
             <option>Satisfaction</option>
@@ -30,7 +30,7 @@
           <label for="details">Problem Details:</label>
           <textarea
             id="details"
-            v-model="problem.details"
+            v-model="details"
             class="input-field"
             rows="4"
           ></textarea>
@@ -58,48 +58,46 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   name: "UserProblemSubmissionPage",
+  computed: {
+    user() {
+      if (this.$store.state.user) {
+        this.isLoggedIn = true;
+        console.log(this.isLoggedIn);
+        return this.$store.state.user;
+      }
+    },
+  },
+
   data() {
     return {
-      problem: {
-        software: "",
-        method: "",
-        criteria: "",
-        details: "",
-        image: null,
-      },
+      software: "",
+      method: "",
+      criteria: "",
+      details: "",
+      image: null,
     };
   },
   methods: {
     async submitProblem() {
-      console.log("Problem submitted:", this.problem);
-      const formData = new FormData();
-      formData.append('software', this.problem.software);
-      formData.append('method', this.problem.method);
-      formData.append('criteria', this.problem.criteria);
-      formData.append('details', this.problem.details);
-      if (this.problem.image) {
-        formData.append('image', this.problem.image);
-      }
-
       try {
-        const response = await axios.post('http://127.0.0.1:5000/softwareUsability', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
+        await axios.post("http://127.0.0.1:5000/add_softwareUsability", {
+          user_id: this.user,
+          SoftwareUsabilitySoftware: this.software,
+          SoftwareUsabilityTopicName: this.criteria,
+          SoftwareUsabilityText: this.details,
         });
-        if (response.status === 200) {
-          alert('Problem submitted successfully');
-          this.$router.push('/homePage'); // Problemi submit ettikten sonra homePage'e yönlendirme
-        }
+
+        this.$router.push("/");
+        alert("Submission Complete");
       } catch (error) {
-        console.error('Error submitting problem:', error);
-        alert('There was an error submitting the problem. Please try again.');
+        console.error("Error registering user:", error);
       }
     },
+
     triggerFileInput() {
       this.$refs.fileInput.click();
     },
@@ -120,31 +118,31 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
 .page-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: white; 
+  background-color: white;
 }
 
 .problem-submission-container {
   width: 600px;
   padding: 20px;
   border-radius: 15px;
-  background-color: #b3c6a6; 
+  background-color: #b3c6a6;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  font-family: 'Times New Roman', serif;
-  transform: translateY(-60px); 
+  font-family: "Times New Roman", serif;
+  transform: translateY(-60px);
 }
 
 h2 {
   text-align: center;
   color: #333;
   margin-bottom: 20px;
-  font-weight: 700; 
+  font-weight: 700;
 }
 
 .form-group {
@@ -154,9 +152,9 @@ h2 {
 .input-field {
   width: calc(100% - 20px);
   padding: 10px;
-  margin: 0 10px; 
+  margin: 0 10px;
   border: none;
-  border-radius: 25px; 
+  border-radius: 25px;
   background-color: white;
   color: #333;
   font-size: 14px;
@@ -181,11 +179,11 @@ textarea.input-field {
   padding: 10px 20px;
   border: none;
   border-radius: 25px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-weight: 500; 
+  font-weight: 500;
   font-size: 16px;
 }
 
