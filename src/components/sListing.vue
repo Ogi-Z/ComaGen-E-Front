@@ -6,7 +6,7 @@
         :key="software[1]"
         class="software-card"
       >
-        <h3>{{ software[2] }}</h3>
+        <h3>{{ software.name }}</h3>
 
         <button class="button">Read More</button>
       </div>
@@ -21,7 +21,18 @@ export default {
   name: "SoftwareListingPage",
   data() {
     return {
-      softwarelist: [],
+      softwarelist: [
+        {
+          user_id: 0,
+          id: 0,
+          name: "Udemy",
+        },
+        {
+          user_id: 0,
+          id: 0,
+          name: "Araba",
+        },
+      ],
     };
   },
   mounted() {
@@ -61,13 +72,13 @@ export default {
   padding: 20px;
   border-radius: 15px;
   background-color: #b3c6a6;
-  font-family: 'Times New Roman', serif;
+  font-family: "Times New Roman", serif;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transform: translateY(-150px);
 }
 
 .software-card {
-  background-color: #426B1F7D;
+  background-color: #426b1f7d;
   border-radius: 15px;
   padding: 20px;
   margin-bottom: 20px;
@@ -77,12 +88,12 @@ export default {
 .software-card h3 {
   font-weight: 700;
   margin-bottom: 10px;
-  color: #132012; 
+  color: #132012;
 }
 
 .software-card p {
   margin-bottom: 20px;
-  color: #132012; 
+  color: #132012;
 }
 
 .button {

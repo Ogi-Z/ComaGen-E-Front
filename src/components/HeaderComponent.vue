@@ -9,7 +9,7 @@
       <router-link to="/register" v-if="!isLoggedIn">Register</router-link>
       <router-link to="/login" v-if="!isLoggedIn">Login</router-link>
 
-      <router-link to="/admin" v-if="user[6] == 1">Admin Panel</router-link>
+      <router-link to="/admin" v-if="role() == 2">Admin Panel</router-link>
       <router-link to="/blog">Blog</router-link>
       <router-link to="/software-listing">Software Listing</router-link>
       <router-link to="/submit-problem">Submit Problem</router-link>
@@ -32,6 +32,20 @@ export default {
   methods: {
     logOut() {
       location.reload();
+    },
+    role() {
+      // Check if 'this.user' is defined and has at least 7 elements
+      if (this.user && this.user.length >= 7) {
+        if (this.user[6] === 2) {
+          return 2;
+        } else {
+          return 0;
+        }
+      } else {
+        // Handle the case when 'this.user' is undefined or incomplete
+        // You can return a default value or handle it according to your use case
+        return -1; // Default value or appropriate indicator
+      }
     },
   },
 
