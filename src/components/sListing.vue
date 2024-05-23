@@ -1,9 +1,13 @@
 <template>
   <div class="page-container">
     <div class="software-listing-container">
-      <div v-for="software in softwarelist" :key="software.id" class="software-card">
-        <h3>{{ software.name }}</h3>
-        <p>{{ software.description }}</p>
+      <div
+        v-for="software in softwarelist"
+        :key="software[1]"
+        class="software-card"
+      >
+        <h3>{{ software[2] }}</h3>
+
         <button class="button">Read More</button>
       </div>
     </div>
@@ -11,24 +15,13 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
-  name: 'SoftwareListingPage',
+  name: "SoftwareListingPage",
   data() {
     return {
-      softwarelist: [
-        {
-          id: 1,
-          name: 'Example Software 1',
-          description: 'Description about software. Description about software.'
-        },
-        {
-          id: 2,
-          name: 'Example Software 2',
-          description: 'Another description about software. More details about what it does and its features.'
-        }
-      ]
+      softwarelist: [],
     };
   },
   mounted() {
@@ -37,18 +30,22 @@ export default {
   methods: {
     async getSoftwareList() {
       try {
-        const response = await axios.get('http://127.0.0.1:5000/software');
-        this.softwarelist.push(...response.data);
+        const response = await axios.get(
+          "http://127.0.0.1:5000/softwareUsability"
+        );
+        this.softwarelist = response.data;
+
+        console.log(this.softwarelist);
       } catch (error) {
-        console.error('Error fetching software list:', error);
+        console.error("Error fetching software list:", error);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
 .page-container {
   display: flex;
@@ -64,7 +61,7 @@ export default {
   padding: 20px;
   border-radius: 15px;
   background-color: #b3c6a6;
-  font-family: 'Times New Roman', serif;
+  font-family: "Times New Roman", serif;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transform: translateY(-150px);
 }

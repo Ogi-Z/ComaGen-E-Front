@@ -3,23 +3,35 @@
     <router-link to="/" class="logo" exact>Comagen-E</router-link>
     <div class="nav-links">
       <router-link to="/">Home</router-link>
-      <router-link to="/register">Register</router-link>
+      <router-link to="/owner_register" v-if="!isLoggedIn"
+        >Owner Register</router-link
+      >
+      <router-link to="/register" v-if="!isLoggedIn">Register</router-link>
       <router-link to="/login" v-if="!isLoggedIn">Login</router-link>
-      <router-link to="/user-profile" v-if="isLoggedIn">Profile</router-link>
+
       <router-link to="/admin">Admin Panel</router-link>
       <router-link to="/blog">Blog</router-link>
       <router-link to="/software-listing">Software Listing</router-link>
       <router-link to="/submit-problem">Submit Problem</router-link>
-      <router-link to="/logout" v-if="isLoggedIn">Logout</router-link>
+      <router-link to="/user-profile" v-if="isLoggedIn"
+        ><v-btn size="30px" icon="mdi-account-outline"></v-btn
+      ></router-link>
+      <router-link to="/" @click="logOut()" v-if="isLoggedIn"
+        >Logout</router-link
+      >
     </div>
-    <div v-if="user">
-      <v-btn icon="mdi-account-outline"></v-btn>
-    </div>
+    <div v-if="user"></div>
   </div>
 </template>
 
 <script>
 export default {
+  methods: {
+    logOut() {
+      location.reload();
+    },
+  },
+
   data() {
     return {
       isLoggedIn: false,
