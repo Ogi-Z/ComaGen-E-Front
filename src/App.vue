@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <HeaderComponent />
-    <v-main>
+    <v-main class="app">
       <router-view />
     </v-main>
   </v-app>
@@ -19,6 +19,10 @@ export default {
 </script>
 
 <style>
+.app {
+  background-color: rgb(255, 255, 255);
+}
+
 input,
 select,
 textarea {

@@ -1,17 +1,11 @@
 <template>
-  <div class="page-container">
-    <div class="software-listing-container">
-      <div
-        v-for="software in softwarelist"
-        :key="software[1]"
-        class="software-card"
-      >
-        <h3>{{ software[2] }}</h3>
-        <p>{{ software[4] }}</p>
+  <div>
+    <v-card v-for="software in softwarelist" :key="software[1]">
+      <h3>{{ software[2] }}</h3>
+      <p>{{ software[4] }}</p>
 
-        <button class="button">Read More</button>
-      </div>
-    </div>
+      <button class="button">Read More</button>
+    </v-card>
   </div>
 </template>
 
