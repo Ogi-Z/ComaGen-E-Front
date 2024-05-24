@@ -11,14 +11,11 @@
       </div>
       <div class="findings-section">
         <h2>Findings</h2>
-        <textarea
-          v-model="newFinding"
-          placeholder="Enter new finding..."
-          class="input-field"
-        ></textarea>
-        <div class="actions">
-          <button @click="addImage" class="button">Add Image</button>
-          <button @click="saveFinding" class="button">Save</button>
+        <div v-for="finding in filteredFindings" :key="finding[0]" class="item">
+          <div class="item-info items">
+            <h2 class="text">{{ finding[2] }}</h2>
+            <span class="text">{{ finding[4] }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -30,7 +27,10 @@ import axios from "axios";
 
 export default {
   name: "UserProfilePage",
-  mounted() {},
+  mounted() {
+    this.getFindings();
+    console.log(this.filteredFindings);
+  },
 
   computed: {
     user() {
@@ -40,11 +40,17 @@ export default {
         return this.$store.state.user;
       }
     },
+
+    filteredFindings() {
+      return this.newFinding.filter(
+        (newFinding) => newFinding[1] === this.user[0]
+      );
+    },
   },
 
   data() {
     return {
-      newFinding: "",
+      newFinding: [],
       userByID: "",
     };
   },
@@ -52,10 +58,23 @@ export default {
     addImage() {
       console.log("Add image to finding");
     },
+
     saveFinding() {
       console.log("Save finding:", this.newFinding);
 
       this.newFinding = "";
+    },
+
+    async getFindings() {
+      try {
+        const response = await axios.get(
+          "http://127.0.0.1:5000/softwareUsability"
+        );
+        this.newFinding = response.data;
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching software list:", error);
+      }
     },
   },
 };
@@ -104,6 +123,17 @@ export default {
   align-items: center;
   text-align: center;
 }
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.item-info {
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  background-color: rgba(255, 255, 255, 1);
+}
 
 .profile-info h2 {
   background-color: #4caf50;
@@ -117,7 +147,18 @@ export default {
   margin-bottom: 10px;
   font-size: 36px;
 }
-
+.item-avatar {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(66, 107, 31, 1);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 500;
+}
 .profile-info p {
   margin: 5px 0;
 }
@@ -177,5 +218,10 @@ h2 {
 
 .button.secondary:hover {
   background-color: #c0392b;
+}
+.text {
+  color: black;
+  font-family: "Neucha", serif;
+  margin-left: 3%;
 }
 </style>

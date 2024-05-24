@@ -106,7 +106,7 @@ export default {
       text: "",
       dialog: false,
       users: [],
-      findings: [],
+      findings: "",
       accounts: [],
       blogs: [], // Yeni blog verileri için ekleme
     };
@@ -139,6 +139,7 @@ export default {
       );
 
       this.findings = response.data;
+      console.log(this.findings);
     },
 
     async approveFinding(id) {

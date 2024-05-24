@@ -85,10 +85,11 @@ export default {
     async submitProblem() {
       try {
         await axios.post("http://127.0.0.1:5000/add_softwareUsability", {
-          user_id: this.user,
+          user_id: this.user[0],
           SoftwareUsabilitySoftware: this.software,
           SoftwareUsabilityTopicName: this.criteria,
           SoftwareUsabilityText: this.details,
+          file: null,
         });
 
         this.$router.push("/");
