@@ -1,11 +1,19 @@
 <template>
   <div>
-    <v-card v-for="software in softwarelist" :key="software[1]">
-      <h3>{{ software[2] }}</h3>
-      <p>{{ software[4] }}</p>
+    <v-col>
+      <v-row
+        class="d-flex justify-center mt-6"
+        v-for="software in softwarelist"
+        :key="software[1]"
+      >
+        <v-card class="software-card">
+          <h3>{{ software[2] }}</h3>
+          <p>{{ software[4] }}</p>
 
-      <button class="button">Read More</button>
-    </v-card>
+          <button class="button">Read More</button>
+        </v-card>
+      </v-row>
+    </v-col>
   </div>
 </template>
 
@@ -62,8 +70,6 @@ export default {
 }
 
 .software-listing-container {
-  width: 80%;
-  max-width: 1000px;
   max-height: 500px;
   padding: 20px;
   border-radius: 15px;
@@ -78,6 +84,8 @@ export default {
   margin-bottom: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   height: 250px;
+  max-width: 80%;
+  min-width: 80%;
 }
 
 .software-card h3 {

@@ -14,6 +14,7 @@ import forgotPassword from "@/components/forgotPassword.vue";
 import AddNewBlogPage from "@/components/addNewBlog.vue";
 import AddNewSoftwarePage from "@/components/addNewSoftware.vue";
 import sOwnerReg from "@/components/sOwnerReg.vue";
+import softwareDetail from "@/components/softwareDetail.vue";
 
 const routes = [
   { path: "/", name: "Home", component: HomePage },
@@ -26,6 +27,11 @@ const routes = [
     path: "/software-listing",
     name: "SoftwareListing",
     component: SoftwareListingPage,
+  },
+  {
+    path: "/software-listing/:software",
+    name: "sDetail",
+    component: softwareDetail,
   },
   {
     path: "/software-owner-registration",
