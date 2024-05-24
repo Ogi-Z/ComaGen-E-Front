@@ -24,7 +24,9 @@
           <router-link to="/register" class="button router-link"
             >Register</router-link
           >
-          <router-link to="/forgot-password" class="button secondary router-link"
+          <router-link
+            to="/forgot-password"
+            class="button secondary router-link"
             >Forgot Password</router-link
           >
           <button type="submit" class="button">Login</button>
@@ -67,6 +69,8 @@ export default {
             alert("User is not verified");
           } else if (error.response.status == 409) {
             alert("Invalid password");
+          } else if (error.response.status == 404) {
+            alert("No user with that email exists");
           }
         });
     },
@@ -75,100 +79,100 @@ export default {
 </script>
 
 <style scoped>
-  @import url('https://fonts.googleapis.com/css2?family=Neucha&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Neucha&display=swap");
 
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    font-size: 14px;
-    font-family: 'Inter', sans-serif;
-  }
+* {
+  box-sizing: border-box;
+}
+body {
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+}
 
-  .page-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
-  }
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
 
-  .login-container {
-    width: 500px;
-    height: 220px;
-    padding: 20px;
-    border-radius: 15px;
-    background-color: #b3c6a6;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    font-family: 'Neucha', serif;
-    transform: translateY(-100px);
-  }
+.login-container {
+  width: 500px;
+  height: 220px;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: #b3c6a6;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: "Neucha", serif;
+  transform: translateY(-100px);
+}
 
-  h2 {
-    text-align: center;
-    color: #ffffff;
-    margin-bottom: 20px;
-    font-weight: 500;
-    font-family: 'Neucha', serif;
-  }
+h2 {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-family: "Neucha", serif;
+}
 
-  .form-group {
-    margin-bottom: 15px;
-  }
+.form-group {
+  margin-bottom: 15px;
+}
 
-  .input-field {
-    width: 408px;
-    height: 50px;
-    padding: 10px 30px;
-    margin: 0 10px;
-    border: none;
-    border-radius: 67.5px;
-    background-color: #ffffff;
-    color: #A2B691;
-    font-size: 24px;
-    line-height: 28.8px;
-    font-weight: 400;
-    font-family: 'Neucha', serif;
-  }
+.input-field {
+  width: 408px;
+  height: 50px;
+  padding: 10px 30px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 67.5px;
+  background-color: #ffffff;
+  color: #a2b691;
+  font-size: 24px;
+  line-height: 28.8px;
+  font-weight: 400;
+  font-family: "Neucha", serif;
+}
 
-  .input-field:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  }
+.input-field:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
 
-  .form-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-  }
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
 
-  .button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 25px;
-    background-color: #3c6b3d;
-    color: #ffffff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-weight: 500;
-    font-size: 16px;
-  }
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  background-color: #3c6b3d;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+  font-size: 16px;
+}
 
-  .button:hover {
-    background-color: #45a049;
-  }
+.button:hover {
+  background-color: #45a049;
+}
 
-  .button.secondary {
-    background-color: transparent;
-    color: #133314;
-  }
+.button.secondary {
+  background-color: transparent;
+  color: #133314;
+}
 
-  .button.secondary:hover {
-    background-color: #f5f5f5;
-  }
+.button.secondary:hover {
+  background-color: #f5f5f5;
+}
 
-  .router-link {
-    text-decoration: none;
-  }
+.router-link {
+  text-decoration: none;
+}
 </style>
