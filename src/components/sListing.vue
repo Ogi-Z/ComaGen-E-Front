@@ -6,15 +6,8 @@
         :key="software[1]"
         class="software-card"
       >
-        <h3>{{ software.name }}</h3>
-        <p>
-          Irure excepteur reprehenderit sint et cupidatat consectetur cupidatat
-          proident ipsum in qui. Exercitation ut eu velit anim sint in ea culpa
-          ea nulla. Dolore consectetur eiusmod dolor officia do sint occaecat ex
-          nostrud tempor occaecat ut deserunt consectetur. Irure dolore proident
-          pariatur deserunt eu aliquip quis laboris veniam. Anim cillum enim est
-          veniam consequat officia quis.
-        </p>
+        <h3>{{ software[2] }}</h3>
+        <p>{{ software[4] }}</p>
 
         <button class="button">Read More</button>
       </div>
@@ -70,18 +63,18 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   background-color: white;
 }
 
 .software-listing-container {
   width: 80%;
   max-width: 1000px;
+  max-height: 500px;
   padding: 20px;
   border-radius: 15px;
   background-color: #ffffff;
   font-family: "Neucha", serif;
-  transform: translateY(-150px);
 }
 
 .software-card {
@@ -105,7 +98,7 @@ export default {
   margin-left: 25px;
   margin-right: 25px;
   margin-bottom: 20px;
-  color: #ffffff;
+  color: #000000;
 }
 
 .button {
