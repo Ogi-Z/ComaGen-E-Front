@@ -15,12 +15,14 @@ import AddNewBlogPage from "@/components/addNewBlog.vue";
 import AddNewSoftwarePage from "@/components/addNewSoftware.vue";
 import sOwnerReg from "@/components/sOwnerReg.vue";
 import softwareDetail from "@/components/softwareDetail.vue";
+import ownerLogin from "@/components/ownerLogin.vue";
 
 const routes = [
   { path: "/", name: "Home", component: HomePage },
   { path: "/login", name: "Login", component: LoginPage },
   { path: "/register", name: "Register", component: UserRegistrationPage },
   { path: "/owner_register", name: "Owner_Register", component: sOwnerReg },
+  { path: "/owner_login", name: "Owner_Login", component: ownerLogin },
   { path: "/admin", name: "AdminPanel", component: AdminPage },
   { path: "/blog", name: "Blog", component: BlogPage },
   {

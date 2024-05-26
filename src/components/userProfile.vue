@@ -22,13 +22,83 @@
           </v-form>
         </h2>
         <div v-for="finding in filteredFindings" :key="finding[0]" class="item">
-          <div
+          <v-card
             v-if="finding[2] == searched || searched == ''"
-            class="item-info items"
+            class="software-card"
           >
-            <h2 class="text">{{ finding[2] }}</h2>
-            <span class="text">{{ finding[4] }}</span>
-          </div>
+            <h3>
+              {{ finding[2] }}
+              <v-icon
+                color="red"
+                size="x-small"
+                class="ml-5"
+                icon="mdi-trash-can"
+                @click="deleteFinding(finding[0])"
+              ></v-icon>
+            </h3>
+            <p class="percent">
+              <v-progress-circular
+                v-if="getPercentage(finding[6], finding[7]) > 75"
+                :modelValue="getPercentage(finding[6], finding[7])"
+                color="#426B1F"
+                :size="60"
+                :width="10"
+                >{{
+                  getPercentage(finding[6], finding[7])
+                }}</v-progress-circular
+              >
+              <v-progress-circular
+                v-if="
+                  getPercentage(finding[6], finding[7]) <= 75 &&
+                  getPercentage(finding[6], finding[7]) >= 50
+                "
+                :modelValue="getPercentage(finding[6], finding[7])"
+                color="#FFBD00"
+                :size="60"
+                :width="10"
+                >{{
+                  getPercentage(finding[6], finding[7])
+                }}</v-progress-circular
+              >
+              <v-progress-circular
+                v-if="getPercentage(finding[6], finding[7]) < 50"
+                :modelValue="getPercentage(finding[6], finding[7])"
+                color="#FF2A00"
+                :size="60"
+                :width="10"
+                >{{
+                  getPercentage(finding[6], finding[7])
+                }}</v-progress-circular
+              >
+            </p>
+            <h2>{{ finding[3] }}</h2>
+            <p>{{ finding[4] }}</p>
+
+            <v-row>
+              <v-col>
+                <v-btn class="button">Read More</v-btn>
+              </v-col>
+
+              <v-col>
+                <v-icon
+                  @click="like(finding[0])"
+                  class="like"
+                  color="green"
+                  icon="mdi-thumb-up"
+                ></v-icon>
+                <p class="like">{{ finding[6] }}</p>
+              </v-col>
+              <v-col cols="3" class=""
+                ><v-icon
+                  @click="dislike(finding[0])"
+                  class="dislike"
+                  color="red"
+                  icon="mdi-thumb-down"
+                ></v-icon>
+                <p class="dislike">{{ finding[7] }}</p>
+              </v-col>
+            </v-row>
+          </v-card>
         </div>
       </div>
     </div>
@@ -43,6 +113,7 @@ export default {
   mounted() {
     this.getFindings();
     console.log(this.filteredFindings);
+    this.getPercentage();
   },
 
   computed: {
@@ -69,6 +140,25 @@ export default {
     };
   },
   methods: {
+    async deleteFinding(id) {
+      try {
+        await axios.delete(
+          "http://127.0.0.1:5000/delete_softwareUsability/" + id
+        );
+        alert("Succsessfully Deleted");
+      } catch (error) {
+        console.error("Error fetching software list:", error);
+      }
+    },
+
+    getPercentage(like, dislike) {
+      if (like + dislike === 0) {
+        return "a";
+      }
+      const percentage = ((like / (like + dislike)) * 100).toFixed(0);
+      return percentage;
+    },
+
     addImage() {
       console.log("Add image to finding");
     },
@@ -190,10 +280,12 @@ export default {
 }
 
 h2 {
-  font-weight: 700;
-  margin-bottom: 20px;
-  font-size: 28px;
   font-family: "Neucha";
+  font-size: 30;
+  margin-bottom: 10px;
+  margin-left: 25px;
+  margin-right: 25px;
+  color: #213d09;
 }
 
 .input-field {
@@ -219,15 +311,63 @@ h2 {
 }
 
 .button {
+  font-family: "Neucha";
   padding: 10px 20px;
   border: none;
-  border-radius: 25px;
-  background-color: #4caf50;
-  color: white;
+  border-radius: 10px;
+  background-color: #426b1f;
+  color: #ffffff;
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-weight: 500;
   font-size: 16px;
+  position: relative;
+  left: 3%;
+}
+
+.like {
+  position: absolute;
+  left: 83%;
+  margin-top: 8px;
+}
+
+.dislike {
+  position: absolute;
+  left: 90%;
+  margin-top: 8px;
+}
+
+.percent {
+  position: absolute;
+  right: 3%;
+  top: 10%;
+}
+
+.software-card {
+  background-color: #426b1f7d;
+  padding: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.software-card h3 {
+  font-family: "Neucha";
+  font-size: 40px;
+  margin-left: 25px;
+  margin-right: 25px;
+  color: #213d09;
+}
+
+.software-card p {
+  font-family: "Neucha";
+  font-size: 24px;
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-bottom: 20px;
+  color: #000000;
 }
 
 .button:hover {

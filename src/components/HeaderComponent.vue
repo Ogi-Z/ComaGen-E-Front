@@ -6,6 +6,10 @@
       <router-link to="/owner_register" v-if="!isLoggedIn"
         >Owner Register</router-link
       >
+      <router-link to="/owner_login" v-if="!isLoggedIn"
+        >Owner Login</router-link
+      >
+
       <router-link to="/register" v-if="!isLoggedIn">Register</router-link>
 
       <router-link to="/admin" v-if="role() == 2">Admin Panel</router-link>
@@ -39,12 +43,11 @@ export default {
       location.reload();
     },
     role() {
-      // Check if 'this.user' is defined and has at least 7 elements
       if (this.user && this.user.length >= 7) {
         if (this.user[6] === 2) {
           return 2;
-        } else {
-          return 0;
+        } else if (this.user[7] === 1) {
+          return 1;
         }
       } else {
         // Handle the case when 'this.user' is undefined or incomplete

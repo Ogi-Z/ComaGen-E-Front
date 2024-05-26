@@ -60,6 +60,7 @@
               <v-col cols="3"
                 ><div class="item-actions">
                   <v-icon
+                    @click="deleteuser(user[0])"
                     color="red"
                     icon="mdi-trash-can"
                     size="large"
@@ -127,6 +128,15 @@ export default {
   },
 
   methods: {
+    async deleteuser(id) {
+      try {
+        await axios.delete("http://127.0.0.1:5000//delete_user/" + id);
+        alert("Succsessfully Deleted");
+      } catch (error) {
+        console.error("Error fetching software list:", error);
+      }
+    },
+
     async getBlogs() {
       try {
         const response = await axios.get(

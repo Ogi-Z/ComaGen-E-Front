@@ -125,7 +125,7 @@ export default {
           userpassword: this.softwareOwner.password,
           ownersoftware: this.softwareOwner.software,
           usercity: this.softwareOwner.city,
-          role_id: "2",
+          role_id: "1",
         });
 
         this.$router.push("/");
