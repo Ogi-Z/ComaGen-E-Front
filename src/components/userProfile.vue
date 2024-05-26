@@ -10,9 +10,22 @@
         </div>
       </div>
       <div class="findings-section">
-        <h2>Findings</h2>
+        <h2>
+          Findings
+          <v-form>
+            <v-text-field
+              class="searchbar"
+              label="Search"
+              variant="underlined"
+              v-model="searched"
+            ></v-text-field>
+          </v-form>
+        </h2>
         <div v-for="finding in filteredFindings" :key="finding[0]" class="item">
-          <div class="item-info items">
+          <div
+            v-if="finding[2] == searched || searched == ''"
+            class="item-info items"
+          >
             <h2 class="text">{{ finding[2] }}</h2>
             <span class="text">{{ finding[4] }}</span>
           </div>
@@ -52,6 +65,7 @@ export default {
     return {
       newFinding: [],
       userByID: "",
+      searched: "",
     };
   },
   methods: {
@@ -115,6 +129,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 250px;
 }
 
 .profile-info {
@@ -126,16 +141,19 @@ export default {
 .items {
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 .item-info {
   display: flex;
   align-items: start;
   gap: 10px;
   background-color: rgba(255, 255, 255, 1);
+  margin-bottom: 10px;
+  border-radius: 15px;
+  padding: 25px;
 }
 
 .profile-info h2 {
+  font-family: "Neucha";
   background-color: #4caf50;
   color: white;
   border-radius: 50%;
@@ -160,6 +178,8 @@ export default {
   font-weight: 500;
 }
 .profile-info p {
+  font-family: "Neucha";
+  font-size: 22px;
   margin: 5px 0;
 }
 
@@ -172,6 +192,8 @@ export default {
 h2 {
   font-weight: 700;
   margin-bottom: 20px;
+  font-size: 28px;
+  font-family: "Neucha";
 }
 
 .input-field {

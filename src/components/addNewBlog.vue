@@ -12,6 +12,14 @@
             required
             class="input-field"
           />
+          <label for="category">Category:</label>
+          <input
+            type="text"
+            v-model="category"
+            id="category"
+            required
+            class="input-field"
+          />
         </div>
         <div class="form-group">
           <label for="content">Content:</label>
@@ -24,10 +32,9 @@
           ></textarea>
         </div>
         <div class="button-group">
-          <button type="submit" class="button">Add Blog</button>
           <button type="button" class="button cancel-button" @click="cancel">
-            Cancel
-          </button>
+            Cancel</button
+          ><button type="submit" class="button">Add Blog</button>
         </div>
       </form>
     </div>
@@ -52,6 +59,7 @@ export default {
   data() {
     return {
       title: "",
+      category: "",
       content: "",
     };
   },
@@ -60,7 +68,8 @@ export default {
       try {
         await axios.post("http://127.0.0.1:5000/add_blog", {
           user_id: this.user[0],
-          blog_category: this.title,
+          blog_category: this.category,
+          blog_title: this.title,
           blog_text: this.content,
         });
 

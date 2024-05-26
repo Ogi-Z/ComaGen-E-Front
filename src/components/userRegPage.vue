@@ -1,69 +1,73 @@
 <template>
- <div class="page-container">
-  <div class="registration-container">
-    <h2>User Registration</h2>
-    <form @submit.prevent="registerUser">
-      <div class="form-group">
-        <input
-          type="text"
-          v-model="user.name"
-          placeholder="Name Surname*"
-          class="input-field"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <input
-          type="email"
-          v-model="user.email"
-          placeholder="Email*"
-          class="input-field"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <input
-          type="password"
-          v-model="user.password"
-          placeholder="Password*"
-          class="input-field"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <input
-          type="password"
-          v-model="user.confirmPassword"
-          placeholder="Confirm Password*"
-          class="input-field"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <input
-          type="text"
-          v-model="user.city"
-          placeholder="City"
-          class="input-field"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <select v-model="user.gender" class="input-field">
-          <option value="" disabled>Select Gender</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="button">Register</button>
-      </div>
-    </form>
+  <div class="page-container">
+    <div class="registration-container">
+      <h2>User Registration</h2>
+      <form @submit.prevent="registerUser">
+        <div class="form-group">
+          <input
+            type="text"
+            v-model="user.name"
+            placeholder="   Name Surname*"
+            class="input-field"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="email"
+            v-model="user.email"
+            placeholder="   Email*"
+            class="input-field"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            v-model="user.password"
+            placeholder="   Password*"
+            class="input-field"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            v-model="user.confirmPassword"
+            placeholder="   Confirm Password*"
+            class="input-field"
+            required
+          />
+        </div>
+        <v-row>
+          <v-col>
+            <div class="form-group">
+              <input
+                type="text"
+                v-model="user.city"
+                placeholder="   City"
+                class="input-field"
+                required
+              />
+            </div>
+          </v-col>
+          <v-col>
+            <div class="form-group">
+              <select v-model="user.gender" class="input-field">
+                <option value="" disabled>Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+          </v-col>
+        </v-row>
+        <div class="form-group">
+          <button type="submit" class="button">Register</button>
+        </div>
+      </form>
+    </div>
   </div>
-</div> 
 </template>
-
-
 
 <script>
 import router from "../router";
@@ -106,88 +110,85 @@ export default {
 };
 </script>
 
-
 <style scoped>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Newsreader:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Newsreader:wght@400;500;700&display=swap");
 
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    font-size: 14px;
-    font-family: 'Inter', sans-serif;
-  }
+* {
+  box-sizing: border-box;
+}
+body {
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+}
 
-  .page-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
-  }
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #fff;
+}
 
-  .registration-container {
-    width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 15px;
-    background-color: #b3c6a6;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    font-family: 'Neucha', serif;
-    transform: translateY(-70px);
-  }
+.registration-container {
+  width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: #b3c6a6;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: "Neucha", serif;
+  transform: translateY(-70px);
+}
 
-  h2 {
-    text-align: center;
-    color: #ffffff;
-    margin-bottom: 20px;
-    font-weight: 500;
-    font-family: 'Neucha', serif;
-  }
+h2 {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-family: "Neucha", serif;
+}
 
-  .form-group {
-    margin-bottom: 15px;
-  }
+.form-group {
+  margin-bottom: 15px;
+}
 
-  .input-field {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin: 0 10px;
-    border: none;
-    border-radius: 25px;
-    background-color: #ffffff;
-    color: #333;
-    font-size: 18px;
-    line-height: 28.8px;
-    font-weight: 400;
-    font-family: 'Neucha', serif;
-  }
+.input-field {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 25px;
+  background-color: #ffffff;
+  color: #333;
+  font-size: 18px;
+  line-height: 28.8px;
+  font-weight: 400;
+  font-family: "Neucha", serif;
+}
 
-  .input-field:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  }
+.input-field:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
 
-  .button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 25px;
-    background-color: #367038;
-    color: #ffffff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-weight: 500;
-    font-size: 16px;
-  }
+.button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 25px;
+  background-color: #367038;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+  font-size: 16px;
+}
 
-  .button:hover {
-    background-color: #45a049;
-  }
+.button:hover {
+  background-color: #45a049;
+}
 
-  .form-group:last-child {
-    text-align: center;
-  }
+.form-group:last-child {
+  text-align: center;
+}
 </style>
-
-

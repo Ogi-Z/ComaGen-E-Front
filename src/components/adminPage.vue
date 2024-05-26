@@ -10,10 +10,10 @@
               <span class="text">{{ user[1] }} {{ user[2] }}</span>
             </div>
             <div class="item-actions">
-              <button @click="approveUser(user[0])" class="approve-btn">
+              <button @click="rejectUser(user[0])" class="reject-btn">✘</button
+              ><button @click="approveUser(user[0])" class="approve-btn">
                 ✔
               </button>
-              <button @click="rejectUser(user[0])" class="reject-btn">✘</button>
             </div>
           </div>
         </div>
@@ -28,11 +28,10 @@
               <span clasS="text">{{ finding[2] }}</span>
             </div>
             <div class="item-actions">
-              <button @click="approveFinding(finding[0])" class="approve-btn">
-                ✔
-              </button>
               <button @click="rejectFinding(finding[0])" class="reject-btn">
-                ✘
+                ✘</button
+              ><button @click="approveFinding(finding[0])" class="approve-btn">
+                ✔
               </button>
             </div>
           </div>
@@ -42,14 +41,31 @@
       <section class="admin-section" id="accounts">
         <h2>Accounts</h2>
         <div class="items">
-          <div v-for="user in users" :key="user[0]" class="item">
-            <div class="item-info">
-              <div class="item-avatar">{{ user[1].charAt(0) }}</div>
-              <span class="text">{{ user[1] }} {{ user[2] }}</span>
-            </div>
-            <div class="item-actions">
-              <button class="manage-btn">Manage</button>
-            </div>
+          <v-form>
+            <v-text-field
+              class="searchbar"
+              label="Search"
+              variant="underlined"
+              v-model="searched"
+            ></v-text-field>
+          </v-form>
+          <div v-for="user in users" :key="user[0]">
+            <v-row class="item" v-if="user[1] == searched || searched == ''">
+              <v-col>
+                <div class="item-info">
+                  <div class="item-avatar">{{ user[1].charAt(0) }}</div>
+                  <span class="text">{{ user[1] }} {{ user[2] }}</span>
+                </div>
+              </v-col>
+              <v-col cols="3"
+                ><div class="item-actions">
+                  <v-icon
+                    color="red"
+                    icon="mdi-trash-can"
+                    size="large"
+                  ></v-icon></div
+              ></v-col>
+            </v-row>
           </div>
         </div>
       </section>
@@ -63,22 +79,19 @@
               <span class="text">{{ blog[2] }}</span>
             </div>
             <div class="item-actions">
-              <button @click="approveBlog(blog[0])" class="approve-btn">
+              <button @click="rejectBlog(blog[0])" class="reject-btn">✘</button
+              ><button @click="approveBlog(blog[0])" class="approve-btn">
                 ✔
               </button>
-              <button @click="rejectBlog(blog[0])" class="reject-btn">✘</button>
             </div>
           </div>
         </div>
+        <div class="action-buttons">
+          <router-link to="/addNewBlog" class="action-button"
+            >Add New Blog</router-link
+          >
+        </div>
       </section>
-    </div>
-    <div class="action-buttons">
-      <router-link to="/addNewSoftware" class="action-button"
-        >Add New Software</router-link
-      >
-      <router-link to="/addNewBlog" class="action-button"
-        >Add New Blog</router-link
-      >
     </div>
   </div>
 </template>
@@ -102,6 +115,7 @@ export default {
 
   data() {
     return {
+      searched: "",
       topic: "",
       text: "",
       dialog: false,
@@ -234,6 +248,7 @@ body {
   border-radius: 10px;
   padding: 10px;
   box-shadow: 0 0 5px rgba(243, 242, 242, 0.1);
+  margin-bottom: 8px;
 }
 
 .item-info {
@@ -271,8 +286,8 @@ body {
   color: white;
   border: none;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -306,8 +321,10 @@ body {
   background-color: rgba(66, 107, 31, 1);
   color: white;
   border: none;
-  border-radius: 25px;
+  border-radius: 10px;
   cursor: pointer;
+
+  font-family: "Neucha";
   font-size: 16px;
   font-weight: 500;
   transition: background-color 0.3s ease;

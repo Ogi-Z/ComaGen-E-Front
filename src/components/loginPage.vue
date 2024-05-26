@@ -20,15 +20,14 @@
             required
           />
         </div>
+        <router-link to="/forgot-password" class="forgot secondary router-link"
+          >Forgot Password</router-link
+        >
         <div class="form-actions">
           <router-link to="/register" class="button router-link"
             >Register</router-link
           >
-          <router-link
-            to="/forgot-password"
-            class="button secondary router-link"
-            >Forgot Password</router-link
-          >
+
           <button type="submit" class="button">Login</button>
         </div>
       </form>
@@ -94,15 +93,20 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f0f0f0;
+  background-color: #fff;
+}
+.forgot {
+  color: #fff;
+  font-size: 18px;
+  margin-left: 60px;
 }
 
 .login-container {
-  width: 500px;
-  height: 220px;
+  width: 550px;
+  height: 310px;
   padding: 20px;
   border-radius: 15px;
-  background-color: #b3c6a6;
+  background-color: #436b1f79;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   font-family: "Neucha", serif;
   transform: translateY(-100px);
@@ -116,15 +120,10 @@ h2 {
   font-family: "Neucha", serif;
 }
 
-.form-group {
-  margin-bottom: 15px;
-}
-
 .input-field {
-  width: 408px;
+  width: 410px;
   height: 50px;
   padding: 10px 30px;
-  margin: 0 10px;
   border: none;
   border-radius: 67.5px;
   background-color: #ffffff;
@@ -133,6 +132,8 @@ h2 {
   line-height: 28.8px;
   font-weight: 400;
   font-family: "Neucha", serif;
+  margin-top: 30px;
+  margin-left: 10%;
 }
 
 .input-field:focus {
@@ -144,19 +145,22 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-left: 60px;
+  margin-right: 60px;
 }
 
 .button {
-  padding: 10px 20px;
+  width: 126px;
+  height: 48px;
+  padding: 5px 25px;
   border: none;
-  border-radius: 25px;
+  border-radius: 10px;
   background-color: #3c6b3d;
   color: #ffffff;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-weight: 500;
-  font-size: 16px;
+  font-size: 24px;
 }
 
 .button:hover {
@@ -165,7 +169,8 @@ h2 {
 
 .button.secondary {
   background-color: transparent;
-  color: #133314;
+  color: #ffffff;
+  font-size: 18px;
 }
 
 .button.secondary:hover {

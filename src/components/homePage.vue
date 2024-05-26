@@ -2,37 +2,69 @@
   <div class="home-container">
     <div class="text">
       <h1>Welcome to Comagen-E</h1>
+
       <p>
-        At Comagen-E, we're dedicated to providing a comprehensive platform for
-        software enthusiasts, developers, and users alike. Whether you're
-        looking to discover potential defects in software, stay updated with the
-        latest industry blogs, or engage with a vibrant community, you've come
-        to the right place.
+        Veniam enim elit ipsum fugiat sit occaecat. Ut voluptate ut elit quis
+        sint et sint. Aliqua dolore enim pariatur consequat in mollit ex do.
+        Commodo exercitation laboris dolore sunt cillum eiusmod officia anim
+        sunt sint veniam occaecat. Adipisicing tempor eiusmod reprehenderit
+        exercitation. Reprehenderit consectetur qui ad id duis cillum aliquip
+        incididunt esse aliquip. Nulla enim qui laborum irure et mollit occaecat
+        velit exercitation eu consequat et est. Dolore reprehenderit mollit
+        incididunt Lorem consectetur magna sit mollit irure reprehenderit
+        commodo occaecat cillum ex. Occaecat quis labore anim culpa nulla. Ad
+        laborum deserunt deserunt consectetur ad ut nostrud qui dolore eiusmod.
+        Cupidatat minim quis irure sit magna ex nostrud nisi veniam ex eu.
+        Fugiat elit ex ullamco ipsum nostrud laboris officia commodo in labore
+        cillum esse.
       </p>
       <h2>Discover Defects</h2>
       <p>
-        Our platform allows users to share and discover potential defects, bugs,
-        and issues in various software applications. With our user-friendly
-        interface and powerful search functionality, you can easily find
-        insights and solutions to common software problems. Whether you're a
-        developer seeking to improve your code or a user troubleshooting an
-        issue, our defect database has you covered.
+        Veniam enim elit ipsum fugiat sit occaecat. Ut voluptate ut elit quis
+        sint et sint. Aliqua dolore enim pariatur consequat in mollit ex do.
+        Commodo exercitation laboris dolore sunt cillum eiusmod officia anim
+        sunt sint veniam occaecat. Adipisicing tempor eiusmod reprehenderit
+        exercitation. Reprehenderit consectetur qui ad id duis cillum aliquip
+        incididunt esse aliquip. Nulla enim qui laborum irure et mollit occaecat
+        velit exercitation eu consequat et est. Dolore reprehenderit mollit
+        incididunt Lorem consectetur magna sit mollit irure reprehenderit
+        commodo occaecat cillum ex. Occaecat quis labore anim culpa nulla. Ad
+        laborum deserunt deserunt consectetur ad ut nostrud qui dolore eiusmod.
+        Cupidatat minim quis irure sit magna ex nostrud nisi veniam ex eu.
+        Fugiat elit ex ullamco ipsum nostrud laboris officia commodo in labore
+        cillum esse.
       </p>
       <h2>Explore Engaging Blogs</h2>
       <p>
-        Stay informed and entertained with our curated selection of blogs
-        covering a wide range of software-related topics. From industry trends
-        and best practices to in-depth technical analyses and tutorials, our
-        blog section caters to both beginners and seasoned professionals. Dive
-        into captivating content written by experts in the field and expand your
-        knowledge at your own pace.
+        Veniam enim elit ipsum fugiat sit occaecat. Ut voluptate ut elit quis
+        sint et sint. Aliqua dolore enim pariatur consequat in mollit ex do.
+        Commodo exercitation laboris dolore sunt cillum eiusmod officia anim
+        sunt sint veniam occaecat. Adipisicing tempor eiusmod reprehenderit
+        exercitation. Reprehenderit consectetur qui ad id duis cillum aliquip
+        incididunt esse aliquip. Nulla enim qui laborum irure et mollit occaecat
+        velit exercitation eu consequat et est. Dolore reprehenderit mollit
+        incididunt Lorem consectetur magna sit mollit irure reprehenderit
+        commodo occaecat cillum ex. Occaecat quis labore anim culpa nulla. Ad
+        laborum deserunt deserunt consectetur ad ut nostrud qui dolore eiusmod.
+        Cupidatat minim quis irure sit magna ex nostrud nisi veniam ex eu.
+        Fugiat elit ex ullamco ipsum nostrud laboris officia commodo in labore
+        cillum esse.
       </p>
       <h2>Start Exploring Today</h2>
       <p>
-        Ready to embark on your software journey? Dive into our platform and
-        discover a wealth of resources waiting for you. Whether you're here to
-        find defects, read insightful blogs, or engage with our community, we're
-        here to empower you every step of the way.
+        Veniam enim elit ipsum fugiat sit occaecat. Ut voluptate ut elit quis
+        sint et sint. Aliqua dolore enim pariatur consequat in mollit ex do.
+        Commodo exercitation laboris dolore sunt cillum eiusmod officia anim
+        sunt sint veniam occaecat. Adipisicing tempor eiusmod reprehenderit
+        exercitation. Reprehenderit consectetur qui ad id duis cillum aliquip
+        incididunt esse aliquip. Nulla enim qui laborum irure et mollit occaecat
+        velit exercitation eu consequat et est. Dolore reprehenderit mollit
+        incididunt Lorem consectetur magna sit mollit irure reprehenderit
+        commodo occaecat cillum ex. Occaecat quis labore anim culpa nulla. Ad
+        laborum deserunt deserunt consectetur ad ut nostrud qui dolore eiusmod.
+        Cupidatat minim quis irure sit magna ex nostrud nisi veniam ex eu.
+        Fugiat elit ex ullamco ipsum nostrud laboris officia commodo in labore
+        cillum esse.
       </p>
     </div>
   </div>
@@ -68,6 +100,7 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: white;
+  margin-top: 60px;
 }
 
 h1 {

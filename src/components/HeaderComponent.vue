@@ -7,16 +7,21 @@
         >Owner Register</router-link
       >
       <router-link to="/register" v-if="!isLoggedIn">Register</router-link>
-      <router-link to="/login" v-if="!isLoggedIn">Login</router-link>
 
       <router-link to="/admin" v-if="role() == 2">Admin Panel</router-link>
       <router-link to="/blog">Blog</router-link>
       <router-link to="/software-listing">Software Listing</router-link>
-      <router-link to="/submit-problem">Submit Problem</router-link>
+      <router-link to="/submit-problem" v-if="isLoggedIn"
+        >Submit Problem</router-link
+      >
       <router-link to="/user-profile" v-if="isLoggedIn"
         ><v-btn size="30px" icon="mdi-account-outline"></v-btn
       ></router-link>
-      <router-link to="/" @click="logOut()" v-if="isLoggedIn"
+      <router-link class="login" to="/login" v-if="!isLoggedIn"
+        >Login</router-link
+      >
+
+      <router-link class="logout" to="/" @click="logOut()" v-if="isLoggedIn"
         >Logout</router-link
       >
     </div>
@@ -82,22 +87,38 @@ export default {
 
 .logo {
   font-family: "Newsreader";
-  font-size: 36px;
-  font-weight: 700;
+  font-size: 32px;
+  font-weight: 500;
   color: #3a5f3c;
   text-decoration: none;
+  font-style: normal;
+  margin-left: 60px;
+  margin-top: 20px;
 }
 
 .nav-links {
   display: flex;
   gap: 20px;
+  margin-top: 20px;
+  margin-right: 60px;
 }
 
+.login {
+  color: #45a049 !important;
+  font-weight: 600 !important;
+}
+
+.logout {
+  color: #ff0000 !important;
+  font-weight: 600 !important;
+}
 .nav-links a {
   font-size: 16px;
-  color: #333;
+  color: #000000;
   text-decoration: none;
   transition: color 0.3s ease;
+  font-family: "Inter";
+  margin-left: 15px;
 }
 
 .nav-links a:hover {

@@ -8,7 +8,16 @@
               <input
                 type="text"
                 v-model="softwareOwner.name"
-                placeholder="Name Surname"
+                placeholder="   Name"
+                class="input-field"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                v-model="softwareOwner.surname"
+                placeholder="   Surname"
                 class="input-field"
                 required
               />
@@ -17,7 +26,7 @@
               <input
                 type="email"
                 v-model="softwareOwner.email"
-                placeholder="Email"
+                placeholder="   Email"
                 class="input-field"
                 required
               />
@@ -26,7 +35,7 @@
               <input
                 type="password"
                 v-model="softwareOwner.password"
-                placeholder="Password"
+                placeholder="   Password"
                 class="input-field"
                 required
               />
@@ -35,7 +44,7 @@
               <input
                 type="password"
                 v-model="softwareOwner.confirmPassword"
-                placeholder="Confirm Password"
+                placeholder="   Confirm Password"
                 class="input-field"
                 required
               />
@@ -44,7 +53,7 @@
               <input
                 type="text"
                 v-model="softwareOwner.city"
-                placeholder="City"
+                placeholder="   City"
                 class="input-field"
               />
             </div>
@@ -61,7 +70,7 @@
               <input
                 type="text"
                 v-model="softwareOwner.software"
-                placeholder="Software"
+                placeholder="   Software"
                 class="input-field"
               />
             </div>
@@ -71,14 +80,16 @@
                 cols="50"
                 type="text"
                 v-model="softwareOwner.owenership"
-                placeholder="Provide info about your ownership"
+                placeholder="   Provide info about your ownership"
                 class="input-field"
               />
+              <v-btn @click="registerSoftwareOwner()" class="button"
+                >Register</v-btn
+              >
             </div>
           </v-col>
         </v-row>
       </form>
-      <button type="submit" class="button">Register</button>
     </div>
   </div>
 </template>
@@ -93,6 +104,7 @@ export default {
     return {
       softwareOwner: {
         name: "",
+        surname: "",
         email: "",
         password: "",
         confirmPassword: "",
@@ -106,18 +118,18 @@ export default {
   methods: {
     async registerSoftwareOwner() {
       try {
-        const response = await axios.post("http://127.0.0.1:5000/add_user", {
+        await axios.post("http://127.0.0.1:5000/add_softwareowner", {
           username: this.softwareOwner.name,
+          usersurname: this.softwareOwner.surname,
           useremail: this.softwareOwner.email,
           userpassword: this.softwareOwner.password,
+          ownersoftware: this.softwareOwner.software,
           usercity: this.softwareOwner.city,
-          usergender: this.softwareOwner.gender,
-          role_id: "0",
+          role_id: "2",
         });
-        // Kontrol amaçlı: Başarılı bir kayıt işlemi olduğunu varsayalım
-        if (response && response.status === 200) {
-          this.$router.push("/authConfirm");
-        }
+
+        this.$router.push("/");
+        alert("Registiration Complete");
       } catch (error) {
         console.error("Error registering software owner:", error);
       }
@@ -136,9 +148,9 @@ export default {
 }
 
 .registration-container {
-  width: 800px;
-  height: 450px;
-  padding: 20px;
+  width: 1029px;
+  height: 488px;
+  padding: 50px;
   border-radius: 15px;
   background-color: #b3c6a6;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -151,14 +163,14 @@ export default {
 }
 
 .input-field {
-  width: calc(100% - 20px);
+  width: 408px;
   padding: 10px;
   margin: 0 10px;
   border: none;
   border-radius: 25px;
   background-color: white;
   color: #333;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .input-field:focus {
@@ -168,16 +180,19 @@ export default {
 
 .button {
   padding: 10px 20px;
-  width: 50%;
+  width: 400px;
+  height: 48px;
   border: none;
-  border-radius: 25px;
+  border-radius: 15px;
   background-color: #367038;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-family: "Neucha";
   font-weight: 500;
   font-size: 16px;
-  margin-left: 25%;
+  margin-left: 15px;
+  margin-top: 28px;
 }
 
 .button:hover {

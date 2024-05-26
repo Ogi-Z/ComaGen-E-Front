@@ -3,29 +3,37 @@
     <div class="problem-submission-container">
       <h2>Adding Usability Problem</h2>
       <form @submit.prevent="submitProblem">
-        <div class="form-group">
-          <label for="software">Software:</label>
-          <select id="software" v-model="software" class="input-field">
-            <option disabled value="">Choose a software</option>
-            <option>Udemy</option>
-            <option>Coursera</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="method">Evaluation Method:</label>
-          <select id="method" v-model="method" class="input-field">
-            <option>User Testing</option>
-            <option>Heuristic Evaluation</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="criteria">Usability Criteria:</label>
-          <select id="criteria" v-model="criteria" class="input-field">
-            <option>Effectiveness</option>
-            <option>Efficiency</option>
-            <option>Satisfaction</option>
-          </select>
-        </div>
+        <v-row>
+          <v-col
+            ><div class="form-group">
+              <label for="software">Software:</label>
+              <select id="software" v-model="software" class="input-field">
+                <option disabled value="">Choose a software</option>
+                <option>Udemy</option>
+                <option>Coursera</option>
+              </select>
+            </div>
+          </v-col>
+          <v-col>
+            <div class="form-group">
+              <label for="method">Evaluation Method:</label>
+              <select id="method" v-model="method" class="input-field">
+                <option>User Testing</option>
+                <option>Heuristic Evaluation</option>
+              </select>
+            </div>
+          </v-col>
+          <v-col>
+            <div class="form-group">
+              <label for="criteria">Usability Criteria:</label>
+              <select id="criteria" v-model="criteria" class="input-field">
+                <option>Effectiveness</option>
+                <option>Efficiency</option>
+                <option>Satisfaction</option>
+              </select>
+            </div>
+          </v-col>
+        </v-row>
         <div class="form-group">
           <label for="details">Problem Details:</label>
           <textarea
@@ -130,7 +138,7 @@ export default {
 }
 
 .problem-submission-container {
-  width: 600px;
+  width: 1173px;
   padding: 20px;
   border-radius: 15px;
   background-color: #b3c6a6;
@@ -140,6 +148,7 @@ export default {
 }
 
 h2 {
+  font-family: "Neucha";
   text-align: center;
   color: #333;
   margin-bottom: 20px;
@@ -147,6 +156,7 @@ h2 {
 }
 
 .form-group {
+  font-family: "Neucha";
   margin-bottom: 15px;
 }
 
@@ -159,6 +169,8 @@ h2 {
   background-color: white;
   color: #333;
   font-size: 14px;
+
+  font-family: "Neucha";
 }
 
 .input-field:focus {
@@ -179,13 +191,14 @@ textarea.input-field {
 .button {
   padding: 10px 20px;
   border: none;
-  border-radius: 25px;
-  background-color: #4caf50;
+  border-radius: 10px;
+  background-color: #426b1f;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-weight: 500;
   font-size: 16px;
+  font-family: "Neucha";
 }
 
 .button:hover {
@@ -193,7 +206,7 @@ textarea.input-field {
 }
 
 .button.secondary {
-  background-color: #e74c3c;
+  background-color: #ff0000;
 }
 
 .button.secondary:hover {
