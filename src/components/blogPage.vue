@@ -11,13 +11,6 @@
             :key="category"
             >{{ category }}</v-chip
           >
-          <v-chip
-            class="chips"
-            @click="selectedCat = category"
-            v-for="category in categories"
-            :key="category"
-            >Deneme</v-chip
-          >
         </div>
       </v-col>
       <v-col>

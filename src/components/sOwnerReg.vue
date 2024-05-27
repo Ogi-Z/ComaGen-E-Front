@@ -8,7 +8,7 @@
               <input
                 type="text"
                 v-model="softwareOwner.name"
-                placeholder="   Name"
+                placeholder="   Name*"
                 class="input-field"
                 required
               />
@@ -17,7 +17,7 @@
               <input
                 type="text"
                 v-model="softwareOwner.surname"
-                placeholder="   Surname"
+                placeholder="   Surname*"
                 class="input-field"
                 required
               />
@@ -26,7 +26,7 @@
               <input
                 type="email"
                 v-model="softwareOwner.email"
-                placeholder="   Email"
+                placeholder="   Email*"
                 class="input-field"
                 required
               />
@@ -35,7 +35,7 @@
               <input
                 type="password"
                 v-model="softwareOwner.password"
-                placeholder="   Password"
+                placeholder="   Password*"
                 class="input-field"
                 required
               />
@@ -44,7 +44,7 @@
               <input
                 type="password"
                 v-model="softwareOwner.confirmPassword"
-                placeholder="   Confirm Password"
+                placeholder="   Confirm Password*"
                 class="input-field"
                 required
               />
@@ -53,7 +53,7 @@
               <input
                 type="text"
                 v-model="softwareOwner.city"
-                placeholder="   City"
+                placeholder="   City*"
                 class="input-field"
               />
             </div>
@@ -70,7 +70,7 @@
               <input
                 type="text"
                 v-model="softwareOwner.software"
-                placeholder="   Software"
+                placeholder="   Software*"
                 class="input-field"
               />
             </div>
@@ -80,7 +80,7 @@
                 cols="50"
                 type="text"
                 v-model="softwareOwner.owenership"
-                placeholder="   Provide info about your ownership"
+                placeholder="   Provide info about your ownership*"
                 class="input-field"
               />
               <v-btn @click="registerSoftwareOwner()" class="button"

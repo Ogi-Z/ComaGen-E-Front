@@ -28,13 +28,6 @@
           >
             <h3>
               {{ finding[2] }}
-              <v-icon
-                color="red"
-                size="x-small"
-                class="ml-5"
-                icon="mdi-trash-can"
-                @click="deleteFinding(finding[0])"
-              ></v-icon>
             </h3>
             <p class="percent">
               <v-progress-circular
@@ -77,30 +70,86 @@
             <v-row>
               <v-col>
                 <div>
-                  <v-btn class="button" @click="dialog = true">
+                  <v-btn
+                    class="button"
+                    @click="
+                      (dialog = true),
+                        getComments(finding[0]),
+                        (this.title = finding[2]),
+                        (this.subtitle = finding[3]),
+                        (this.text = finding[4])
+                    "
+                  >
+                    Read More
+                  </v-btn>
+                  <v-btn
+                    class="button"
+                    @click="(dialog2 = true), (this.sid = finding[0])"
+                  >
                     Add Comment
                   </v-btn>
-
                   <v-dialog v-model="dialog" width="auto">
-                    <v-card class="card" width="600">
-                      <v-card-title class="card-title">
-                        Add a comment
-                      </v-card-title>
-                      <v-textarea v-model="comment" class="input-field">
-                      </v-textarea>
-                      <template v-slot:actions>
-                        <v-btn
-                          class="button"
-                          text="Add"
-                          @click="addComment(finding[0]), (dialog = false)"
-                        ></v-btn>
-                      </template>
+                    <v-card class="software-card2" width="1000">
+                      <h3>{{ this.title }}</h3>
+                      <h2>{{ this.subtitle }}</h2>
+                      <p>{{ this.text }}</p>
+                      <h2>Comments:</h2>
+                      <v-card
+                        class="item2"
+                        v-for="com in comments"
+                        :key="com[0]"
+                      >
+                        <p clas="comment">
+                          {{ com[3] }}
+                          <v-row>
+                            <v-col></v-col>
+                            <v-col cols="2">
+                              <v-icon
+                                @click="deleteComment(com[0]), (dialog = false)"
+                                color="red"
+                                icon="mdi-trash-can"
+                              ></v-icon>
+                            </v-col>
+                          </v-row>
+                        </p>
+                      </v-card>
+                    </v-card>
+                  </v-dialog>
+
+                  <v-dialog v-model="dialog2" width="auto">
+                    <v-card class="software-card2" width="1000">
+                      <v-row>
+                        <v-col></v-col>
+                        <v-col cols="1">
+                          <v-btn
+                            class="ml-8"
+                            @click="dialog2 = false"
+                            color="red"
+                            icon="mdi-close"
+                          ></v-btn>
+                        </v-col>
+                      </v-row>
+                      <v-card-title>Add Comment</v-card-title>
+                      <v-card-text>
+                        <v-textarea v-model="comment"></v-textarea>
+                      </v-card-text>
+                      <v-row>
+                        <v-col> </v-col>
+                        <v-col cols="2">
+                          <v-btn
+                            @click="addComment(), (dialog2 = false)"
+                            class="button2"
+                          >
+                            Submit
+                          </v-btn>
+                        </v-col>
+                      </v-row>
                     </v-card>
                   </v-dialog>
                 </div>
               </v-col>
 
-              <v-col>
+              <v-col cols="3">
                 <v-icon
                   @click="like(finding[0])"
                   class="like"
@@ -155,19 +204,39 @@ export default {
 
   data() {
     return {
+      title: "",
+      subtitle: "",
+      text: "",
+
+      sid: "",
       newFinding: [],
       userByID: "",
       searched: "",
       comment: "",
+      comments: [],
       dialog: false,
+      dialog2: false,
     };
   },
   methods: {
-    async addComment(sid) {
+    async getComments(softid) {
+      try {
+        const response = await axios.get(
+          `http://127.0.0.1:5000/softwareUsabilityComments/` + softid
+        );
+        this.comments = response.data;
+        console.log(this.comments);
+      } catch (error) {
+        console.error("Error fetching comments:", error);
+        this.comments = "";
+      }
+    },
+
+    async addComment() {
       try {
         await axios.post("http://127.0.0.1:5000/add_softwareUsabilityComment", {
           user_id: this.owner[0],
-          softwareusability_id: sid,
+          softwareusability_id: this.sid,
           comment_text: this.comment,
         });
         alert("Comment Added");
@@ -197,6 +266,17 @@ export default {
 
     addImage() {
       console.log("Add image to finding");
+    },
+
+    async deleteComment(id) {
+      try {
+        await axios.delete(
+          "http://127.0.0.1:5000/delete_softwareusability_comment/" + id
+        );
+        alert("Succsessfully Deleted");
+      } catch (error) {
+        console.error("Error fetching software list:", error);
+      }
     },
 
     async getFindings() {
@@ -249,7 +329,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 250px;
+  height: 180px;
 }
 
 .profile-info {
@@ -270,6 +350,18 @@ export default {
   margin-bottom: 10px;
   border-radius: 15px;
   padding: 25px;
+}
+
+.item2 {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 10px;
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-top: 10px;
+  box-shadow: 0 0 5px rgba(243, 242, 242, 0.1);
+  margin-bottom: 8px;
 }
 
 .profile-info h2 {
@@ -307,15 +399,25 @@ export default {
   flex: 3;
   display: flex;
   flex-direction: column;
+  font-family: "Neucha";
 }
 
-h2 {
+.software-card h2 {
   font-family: "Neucha";
   font-size: 30;
   margin-bottom: 10px;
   margin-left: 25px;
   margin-right: 25px;
   color: #213d09;
+}
+
+.software-card2 h2 {
+  font-family: "Neucha";
+  font-size: 30;
+  margin-bottom: 10px;
+  margin-left: 25px;
+  margin-right: 25px;
+  color: #c3daaf;
 }
 
 .input-field {
@@ -334,10 +436,6 @@ h2 {
   padding: 20px;
   width: 400px;
   transform: translateY(-80px);
-}
-
-.card-title {
-  color: #000000;
 }
 
 input,
@@ -363,8 +461,24 @@ textarea {
   font-family: "Neucha";
   padding: 10px 20px;
   border: none;
+  margin-right: 10px;
   border-radius: 10px;
   background-color: #426b1f;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+  font-size: 16px;
+  position: relative;
+  left: 3%;
+}
+
+.button2 {
+  font-family: "Neucha";
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: #609e29;
   color: #ffffff;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -393,7 +507,17 @@ textarea {
 }
 
 .software-card {
-  background-color: #426b1f7d;
+  background-color: #436b1f88;
+  padding: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.software-card2 {
+  background-color: #436b1f;
   padding: 30px;
   padding-left: 50px;
   padding-right: 50px;
@@ -410,6 +534,14 @@ textarea {
   color: #213d09;
 }
 
+.software-card2 h3 {
+  font-family: "Neucha";
+  font-size: 40px;
+  margin-left: 25px;
+  margin-right: 25px;
+  color: #213d09;
+}
+
 .input-field {
   width: 100%;
   padding: 10px;
@@ -418,6 +550,15 @@ textarea {
 }
 
 .software-card p {
+  font-family: "Neucha";
+  font-size: 24px;
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+.software-card2 p {
   font-family: "Neucha";
   font-size: 24px;
   margin-left: 25px;

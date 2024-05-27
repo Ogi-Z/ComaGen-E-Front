@@ -64,7 +64,32 @@
 
             <v-row>
               <v-col>
-                <v-btn class="button">Read More</v-btn>
+                <v-btn
+                  class="button"
+                  @click="
+                    (dialog = true),
+                      getComments(software[0]),
+                      (this.title = software[2]),
+                      (this.subtitle = software[3]),
+                      (this.text = software[4])
+                  "
+                >
+                  Read More
+                </v-btn>
+
+                <v-dialog v-model="dialog" width="auto">
+                  <v-card class="software-card2" width="1000">
+                    <h3>{{ this.title }}</h3>
+                    <h2>{{ this.subtitle }}</h2>
+                    <p>{{ this.text }}</p>
+                    <h2>Comments:</h2>
+                    <v-card class="item2" v-for="com in comments" :key="com[0]">
+                      <p clas="comment">
+                        {{ com[3] }}
+                      </p>
+                    </v-card>
+                  </v-card>
+                </v-dialog>
               </v-col>
 
               <v-col>
@@ -101,9 +126,13 @@ export default {
 
   data() {
     return {
-      nazmi: "50",
+      title: "",
+      subtitle: "",
+      text: "",
+      comments: [],
       percentage: 0,
       searched: "",
+      dialog: false,
       softwarelist: [
         {
           user_id: 0,
@@ -123,6 +152,19 @@ export default {
     this.getPercentage();
   },
   methods: {
+    async getComments(softid) {
+      try {
+        const response = await axios.get(
+          `http://127.0.0.1:5000/softwareUsabilityComments/` + softid
+        );
+        this.comments = response.data;
+        console.log(this.comments);
+      } catch (error) {
+        console.error("Error fetching comments:", error);
+        this.comments = "";
+      }
+    },
+
     async dislike(id) {
       try {
         const response = await axios.post(
@@ -245,6 +287,77 @@ export default {
   font-size: 16px;
   position: relative;
   left: 3%;
+}
+
+.item2 {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 10px;
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-top: 10px;
+  box-shadow: 0 0 5px rgba(243, 242, 242, 0.1);
+  margin-bottom: 8px;
+}
+
+.software-card2 h3 {
+  font-family: "Neucha";
+  font-size: 40px;
+  margin-left: 25px;
+  margin-right: 25px;
+  color: #213d09;
+}
+.software-card2 p {
+  font-family: "Neucha";
+  font-size: 24px;
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+.software-card2 {
+  background-color: #436b1f;
+  padding: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.button2 {
+  font-family: "Neucha";
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: #609e29;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+  font-size: 16px;
+  position: relative;
+  left: 3%;
+}
+
+.software-card h2 {
+  font-family: "Neucha";
+  font-size: 30;
+  margin-bottom: 10px;
+  margin-left: 25px;
+  margin-right: 25px;
+  color: #213d09;
+}
+
+.software-card2 h2 {
+  font-family: "Neucha";
+  font-size: 30;
+  margin-bottom: 10px;
+  margin-left: 25px;
+  margin-right: 25px;
+  color: #c3daaf;
 }
 
 .like {

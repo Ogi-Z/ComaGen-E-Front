@@ -44,9 +44,6 @@
           ></textarea>
         </div>
         <div class="form-group">
-          <button type="button" @click="triggerFileInput" class="button">
-            Add Image
-          </button>
           <input
             type="file"
             ref="fileInput"
