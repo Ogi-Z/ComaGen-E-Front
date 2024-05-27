@@ -9,22 +9,22 @@
       <router-link to="/owner_login" v-if="!isLoggedIn"
         >Owner Login</router-link
       >
-
       <router-link to="/register" v-if="!isLoggedIn">Register</router-link>
-
       <router-link to="/admin" v-if="role() == 2">Admin Panel</router-link>
       <router-link to="/blog">Blog</router-link>
       <router-link to="/software-listing">Software Listing</router-link>
-      <router-link to="/submit-problem" v-if="isLoggedIn"
+      <router-link to="/submit-problem" v-if="isLoggedIn && !isOwner"
         >Submit Problem</router-link
       >
-      <router-link to="/user-profile" v-if="isLoggedIn"
+      <router-link to="/owner-profile" v-if="isLoggedIn && isOwner"
+        ><v-btn size="30px" icon="mdi-account-outline"></v-btn
+      ></router-link>
+      <router-link to="/user-profile" v-if="isLoggedIn && !isOwner"
         ><v-btn size="30px" icon="mdi-account-outline"></v-btn
       ></router-link>
       <router-link class="login" to="/login" v-if="!isLoggedIn"
         >Login</router-link
       >
-
       <router-link class="logout" to="/" @click="logOut()" v-if="isLoggedIn"
         >Logout</router-link
       >
@@ -36,23 +36,45 @@
 import axios from "axios";
 
 export default {
-  mounted() {},
+  mounted() {
+    this.checkLoginStatus();
+  },
 
   methods: {
     logOut() {
+      // Perform actual logout logic here, such as clearing user state in Vuex
+      this.$store.dispatch("logout");
+      this.isLoggedIn = false;
+      this.isOwner = false;
       location.reload();
     },
     role() {
-      if (this.user && this.user.length >= 7) {
-        if (this.user[6] === 2) {
+      if (this.isLoggedIn) {
+        if (this.user && this.user.length >= 7 && this.user[6] === 2) {
           return 2;
-        } else if (this.user[7] === 1) {
+        } else if (
+          this.owner &&
+          this.owner.length >= 7 &&
+          this.owner[6] === 2
+        ) {
+          return 2;
+        } else {
           return 1;
         }
       } else {
-        // Handle the case when 'this.user' is undefined or incomplete
-        // You can return a default value or handle it according to your use case
-        return -1; // Default value or appropriate indicator
+        return -1;
+      }
+    },
+    checkLoginStatus() {
+      if (this.$store.state.user) {
+        this.isLoggedIn = true;
+        this.isOwner = false;
+      } else if (this.$store.state.owner) {
+        this.isLoggedIn = true;
+        this.isOwner = true;
+      } else {
+        this.isLoggedIn = false;
+        this.isOwner = false;
       }
     },
   },
@@ -60,17 +82,22 @@ export default {
   data() {
     return {
       isLoggedIn: false,
+      isOwner: false,
     };
   },
 
   computed: {
     user() {
-      if (this.$store.state.user) {
-        this.isLoggedIn = true;
-        console.log(this.isLoggedIn);
-        return this.$store.state.user;
-      }
+      return this.$store.state.user;
     },
+    owner() {
+      return this.$store.state.owner;
+    },
+  },
+
+  watch: {
+    "$store.state.user": "checkLoginStatus",
+    "$store.state.owner": "checkLoginStatus",
   },
 };
 </script>
@@ -115,6 +142,7 @@ export default {
   color: #ff0000 !important;
   font-weight: 600 !important;
 }
+
 .nav-links a {
   font-size: 16px;
   color: #000000;

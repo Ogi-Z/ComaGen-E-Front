@@ -16,6 +16,7 @@ import AddNewSoftwarePage from "@/components/addNewSoftware.vue";
 import sOwnerReg from "@/components/sOwnerReg.vue";
 import softwareDetail from "@/components/softwareDetail.vue";
 import ownerLogin from "@/components/ownerLogin.vue";
+import ownerProfile from "@/components/ownerProfile.vue";
 
 const routes = [
   { path: "/", name: "Home", component: HomePage },
@@ -23,6 +24,7 @@ const routes = [
   { path: "/register", name: "Register", component: UserRegistrationPage },
   { path: "/owner_register", name: "Owner_Register", component: sOwnerReg },
   { path: "/owner_login", name: "Owner_Login", component: ownerLogin },
+  { path: "/owner-profile", name: "Owner-Profile", component: ownerProfile },
   { path: "/admin", name: "AdminPanel", component: AdminPage },
   { path: "/blog", name: "Blog", component: BlogPage },
   {

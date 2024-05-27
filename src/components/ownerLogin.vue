@@ -57,9 +57,9 @@ export default {
         .then((response) => {
           console.log(response);
           if (response.status === 200) {
-            const userId = response.data[1].id;
-            console.log(userId);
-            this.$store.dispatch("fetchUser", userId);
+            const ownerId = response.data[1].id;
+            console.log(ownerId);
+            this.$store.dispatch("fetchOwner", ownerId);
             router.push("/");
             alert("Login successful");
           }
