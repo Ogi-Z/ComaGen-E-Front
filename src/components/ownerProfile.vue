@@ -99,7 +99,7 @@
                         v-for="com in comments"
                         :key="com[0]"
                       >
-                        <p clas="comment">
+                        <p>
                           {{ com[3] }}
                           <v-row>
                             <v-col></v-col>
@@ -109,10 +109,21 @@
                                 color="red"
                                 icon="mdi-trash-can"
                               ></v-icon>
+                              <v-icon
+                                @click="edit(), (this.cid = com[0])"
+                                color="yellow"
+                                icon="mdi-pencil"
+                              ></v-icon>
                             </v-col>
                           </v-row>
                         </p>
                       </v-card>
+                      <div v-if="this.isEdit">
+                        <v-textarea v-model="comment"></v-textarea>
+                        <v-btn @click="editComment()" class="button2"
+                          >Edit Comment</v-btn
+                        >
+                      </div>
                     </v-card>
                   </v-dialog>
 
@@ -207,7 +218,8 @@ export default {
       title: "",
       subtitle: "",
       text: "",
-
+      isEdit: false,
+      cid: "",
       sid: "",
       newFinding: [],
       userByID: "",
@@ -219,6 +231,12 @@ export default {
     };
   },
   methods: {
+    edit() {
+      if (this.isEdit) {
+        this.isEdit = false;
+      } else this.isEdit = true;
+    },
+
     async getComments(softid) {
       try {
         const response = await axios.get(
@@ -229,6 +247,21 @@ export default {
       } catch (error) {
         console.error("Error fetching comments:", error);
         this.comments = "";
+      }
+    },
+
+    async editComment() {
+      try {
+        await axios.post(
+          "http://127.0.0.1:5000/update_softwareusability_comment",
+          {
+            comment_id: this.cid,
+            comment_text: this.comment,
+          }
+        );
+        alert("Comment Edited");
+      } catch (error) {
+        console.error("Error fetching software list:", error);
       }
     },
 
@@ -354,13 +387,10 @@ export default {
 
 .item2 {
   display: flex;
-  justify-content: space-between;
   background-color: rgba(255, 255, 255, 1);
   border-radius: 10px;
   margin-left: 25px;
   margin-right: 25px;
-  margin-top: 10px;
-  box-shadow: 0 0 5px rgba(243, 242, 242, 0.1);
   margin-bottom: 8px;
 }
 
